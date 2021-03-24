@@ -1,7 +1,7 @@
 create database "movies-platform";
 
 create table movies (
-  id int primary key,
+  id int primary key auto_increment,
   name varchar(400) not null unique,
   genre varchar(20) not null,
   description varchar(500) not null,
@@ -11,7 +11,7 @@ create table movies (
 );
 
 create table people (
-  id int primary key,
+  id int primary key auto_increment,
   name varchar(255) not null,
   email varchar(50) not null unique,
   password varchar(255) not null,
@@ -21,7 +21,7 @@ create table people (
 );
 
 create table people_movies (
-  person_id int not null,
+  person_id int not null auto_increment,
   movie_id int not null,
   minutes_watched int not null,
   constraint fk_person foreign key(person_id) references people(id),
