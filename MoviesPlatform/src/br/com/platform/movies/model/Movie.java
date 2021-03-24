@@ -5,6 +5,8 @@
  */
 package br.com.platform.movies.model;
 
+import com.sun.org.glassfish.gmbal.Description;
+
 /**
  *
  * @author elieu
@@ -13,9 +15,18 @@ public class Movie {
   private String name;
   private String genre;
   private String description;
-  private String duration;
+  private int duration;
   private boolean isAvaiable;
-  private String ageRange;
+  private int ageRange;
+  
+  public Movie(String name, String genre, String description, int duration, boolean isAvailable, int ageRange) {
+    this.name = name;
+    this.genre = genre;
+    this.description = description;
+    this.duration = duration;
+    this.isAvaiable = isAvailable;
+    this.ageRange = ageRange;
+  }
 
   public String getName() {
     return name;
@@ -41,11 +52,11 @@ public class Movie {
     this.description = description;
   }
 
-  public String getDuration() {
+  public int getDuration() {
     return duration;
   }
 
-  public void setDuration(String duration) {
+  public void setDuration(int duration) {
     this.duration = duration;
   }
 
@@ -57,11 +68,11 @@ public class Movie {
     this.isAvaiable = isAvaiable;
   }
 
-  public String getAgeRange() {
+  public int getAgeRange() {
     return ageRange;
   }
 
-  public void setAgeRange(String ageRange) {
+  public void setAgeRange(int ageRange) {
     this.ageRange = ageRange;
   }
 }

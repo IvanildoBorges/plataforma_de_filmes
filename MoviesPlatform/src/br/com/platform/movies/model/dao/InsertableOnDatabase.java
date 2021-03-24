@@ -14,15 +14,11 @@ import java.sql.Connection;
 public abstract class InsertableOnDatabase {
   private Connection connection;
   
-  public InsertableOnDatabase(Connection connection) {
-    setConnection(connection);
+  public InsertableOnDatabase() {
+    this.connection = PostgresConnection.openConnection();
   }
   
   public Connection getConnection() {
-    return connection;
-  }
-
-  public void setConnection(Connection connection) {
-    this.connection = connection;
+    return this.connection;
   }
 }
