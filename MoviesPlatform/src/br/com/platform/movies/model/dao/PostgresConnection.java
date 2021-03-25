@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.platform.movies.model.dao;
 
 import java.sql.Connection;
@@ -10,7 +5,8 @@ import java.sql.DriverManager;
 
 /**
  *
- * @author elieu
+ * @author Elieudo Maia
+ * @author Ivanildo Borges
  */
 public class PostgresConnection {
   private static final String DATABASE_DRIVER = "org.postgresql.Driver";
