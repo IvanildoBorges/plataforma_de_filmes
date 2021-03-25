@@ -76,8 +76,32 @@ public class MovieDAO extends InsertableOnDatabase {
     return movieslist;
   }
   
-  public int findById() {
-    return 0;
+  public Movie findById(int id) throws Exception {
+    PreparedStatement pstmt = null;
+    Movie movie = new Movie();
+
+    try {
+      pstmt = this.getConnection().prepareStatement("select * from movies where id = ?;");
+      pstmt.setInt(1, id);
+      
+      ResultSet result = pstmt.executeQuery();
+      
+      result.next();
+      
+      movie.setName(result.getString(2));
+      movie.setGenre(result.getString(3));
+      movie.setDescription(result.getString(4));
+      movie.setDuration(result.getInt(5));
+      movie.setIsAvaiable(result.getBoolean(6));
+      movie.setAgeRange(result.getInt(7));
+      
+    } catch (SQLException e) {
+      throw new Exception("Filme não encontrado");
+    } finally {
+      this.close(pstmt);
+      this.closeConnection(this.getConnection());
+    }
+    return movie;
   }
   
   void close (Statement stmt) {

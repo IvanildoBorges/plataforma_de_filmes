@@ -27,4 +27,9 @@ public class MovieController {
     Movie movie = new Movie(name, genre, description, duration, isAvailable, ageRange);
     this.movieDAO.create(movie);
   }
+  
+  public Movie findById(int id) throws Exception {
+    Movie movie = this.movieDAO.findById(id);
+    return movie;
+  }
 }
