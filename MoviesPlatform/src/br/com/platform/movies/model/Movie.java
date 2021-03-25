@@ -19,6 +19,8 @@ public class Movie {
   private boolean isAvaiable;
   private int ageRange;
   
+  public Movie () {} 
+  
   public Movie(String name, String genre, String description, int duration, boolean isAvailable, int ageRange) {
     this.name = name;
     this.genre = genre;
