@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.platform.movies.model.dao;
 
 import br.com.platform.movies.model.Movie;
@@ -16,7 +11,8 @@ import java.util.List;
 
 /**
  *
- * @author elieu
+ * @author Elieudo Maia
+ * @author Ivanildo Borges
  */
 public class MovieDAO extends InsertableOnDatabase {
   public int create(Movie movie) {
