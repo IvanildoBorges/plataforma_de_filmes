@@ -1,10 +1,12 @@
 package br.com.platform.movies.model.dao;
 
+import br.com.platform.movies.model.Administrator;
 import br.com.platform.movies.model.Client;
 import br.com.platform.movies.model.Person;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -55,20 +57,39 @@ public class PersonDAO extends InsertableOnDatabase{
     return false;
   }
   
-  public boolean login(String user, String password) {
+  public Person login(String user, String password) throws Exception {
     PreparedStatement pstmt = null;
     
     try {
-      pstmt = this.getConnection().prepareStatement("select * from person where email = ? and password = ?;");
+      pstmt = this.getConnection().prepareStatement("select * from people where email = ? and password = ?;");
       
       pstmt.setString(1, user);
       pstmt.setString(2, password);
       
-      pstmt.executeQuery();
+      ResultSet rs = pstmt.executeQuery();
       
-      return true;
+      if (!rs.next()) {
+        throw new Exception("Email ou senha incorreto(s)");
+      }
+      
+      Person person;
+      boolean isAdmin = rs.getBoolean(7);
+      if (isAdmin) {
+        person = new Administrator();
+      } else {
+        person = new Client();
+      }
+      
+      person.setName(rs.getString(2));
+      person.setEmail(rs.getString(3));
+      person.setTelephone(rs.getString(5));
+      person.setAddress(rs.getString(6));
+      person.setBirthDate(rs.getDate(8));
+      
+      return person;
     } catch (Exception e) {
-      return false;
+      System.out.println(e.getMessage());
+      throw new Exception(e.getMessage());
     }
   }
   

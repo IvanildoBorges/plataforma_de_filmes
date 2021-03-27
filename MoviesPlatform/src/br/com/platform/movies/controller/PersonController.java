@@ -44,4 +44,7 @@ public class PersonController {
   
   public void delete() {}
   
+  public void login(String email, String password) throws Exception {
+    this.personDAO.login(email, password);
+  }
 }

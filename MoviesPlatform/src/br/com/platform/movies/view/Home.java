@@ -104,6 +104,7 @@ public class Home extends javax.swing.JFrame {
     BotaoCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
     BotaoCadastrar.setForeground(new java.awt.Color(137, 61, 140));
     BotaoCadastrar.setText("Cadastre-se");
+    BotaoCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     jPanel2.add(BotaoCadastrar);
     BotaoCadastrar.setBounds(70, 420, 140, 40);
 
@@ -129,6 +130,12 @@ public class Home extends javax.swing.JFrame {
     BotaoEntrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
     BotaoEntrar.setForeground(new java.awt.Color(137, 61, 140));
     BotaoEntrar.setText("Entrar");
+    BotaoEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    BotaoEntrar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        BotaoEntrarActionPerformed(evt);
+      }
+    });
     jPanel2.add(BotaoEntrar);
     BotaoEntrar.setBounds(600, 420, 150, 40);
 
@@ -166,6 +173,11 @@ public class Home extends javax.swing.JFrame {
     pack();
     setLocationRelativeTo(null);
   }// </editor-fold>//GEN-END:initComponents
+
+  private void BotaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoEntrarActionPerformed
+    new Login().setVisible(true);
+    this.setVisible(false);
+  }//GEN-LAST:event_BotaoEntrarActionPerformed
 
   /**
    * @param args the command line arguments
