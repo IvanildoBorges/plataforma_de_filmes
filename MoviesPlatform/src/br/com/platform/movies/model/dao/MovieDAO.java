@@ -94,7 +94,6 @@ public class MovieDAO extends InsertableOnDatabase {
       movie.setDuration(result.getInt(5));
       movie.setIsAvaiable(result.getBoolean(6));
       movie.setAgeRange(result.getInt(7));
-      
     } catch (SQLException e) {
       throw new Exception("Filme não encontrado");
     } finally {

@@ -1,9 +1,12 @@
 package br.com.platform.movies.main;
 
 import br.com.platform.movies.controller.MovieController;
+import br.com.platform.movies.controller.PersonController;
 import br.com.platform.movies.model.Movie;
 import br.com.platform.movies.model.dao.PostgresConnection;
+import br.com.platform.movies.view.Home;
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +18,10 @@ import java.util.logging.Logger;
  */
 public class Main {
   public static void main(String[] args) {
-    MovieController mc = new MovieController();
+      System.out.println("Starting application ...");
+      new Home().setVisible(true);
+    
+//    MovieController mc = new MovieController();
     
 //    criando filme
 //    mc.createMovie("Hora de dormir", "Humor", "Filme de humor", 130, true, 14);
@@ -40,6 +46,14 @@ public class Main {
 //    if (m instanceof Movie) {
 //      System.out.println("&&&&&&&" + m.getName());
 //    }
+
+//      PersonController pc = new PersonController();
+//      Date birth = new Date(1997, 9, 18);
+//      try {
+//        pc.create("Elieudo Maia", "elieudo.maia@gmail.com", "123", "88998758585", "Em casa", birth);
+//      } catch (Exception ex) {
+//        System.out.println(ex.getMessage());
+//      }
 
   }
 }
