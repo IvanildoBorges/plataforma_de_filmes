@@ -6,33 +6,36 @@
 package br.com.platform.movies.view;
 
 import br.com.platform.movies.controller.PersonController;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author elieu
  */
 public class UserArea extends javax.swing.JFrame {
-  boolean isAdmin = false;
-  PersonController personController = new PersonController();
+  private PersonController personController = new PersonController();
+  private boolean isAdmin = false;
+  public int personId;
+  
+  public void setPersonId(int id) {
+    this.personId = id;
+  }
 
   /**
    * Creates new form UserArea
    */
   public UserArea() {
-    this.currentlyLoggedInUserIsAdmin();
-    
     initComponents();
-    
-    this.btnRegister.setVisible(isAdmin);
+
+    System.out.println("personId" + this.personId);
+    this.currentlyLoggedInUserIsAdmin();
+    this.btnUserForm.setVisible(true); // MOCK
   }
   
   private void currentlyLoggedInUserIsAdmin() {
     try {
-      isAdmin = this.personController.checkIsAdmin(1); // MOCK
+      isAdmin = this.personController.checkIsAdmin(this.personId);
     } catch (Exception ex) {
-      Logger.getLogger(UserArea.class.getName()).log(Level.SEVERE, null, ex);
+      System.out.println("Erro ao checar se o usuário é adinistrador");
     }
   }
 
@@ -46,7 +49,9 @@ public class UserArea extends javax.swing.JFrame {
   private void initComponents() {
 
     jLabel1 = new javax.swing.JLabel();
-    btnRegister = new javax.swing.JButton();
+    jButton1 = new javax.swing.JButton();
+    jButton2 = new javax.swing.JButton();
+    btnUserForm = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Área do Usuário");
@@ -54,35 +59,75 @@ public class UserArea extends javax.swing.JFrame {
 
     jLabel1.setText("Área do usuário ao realizar login");
 
-    btnRegister.setText("cadastrar");
+    jButton1.setText("Sair");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1ActionPerformed(evt);
+      }
+    });
+
+    jButton2.setText("Cadastrar filme");
+    jButton2.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton2ActionPerformed(evt);
+      }
+    });
+
+    btnUserForm.setText("Cadastrar usuário");
+    btnUserForm.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnUserFormActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(layout.createSequentialGroup()
-            .addGap(316, 316, 316)
-            .addComponent(jLabel1))
-          .addGroup(layout.createSequentialGroup()
-            .addGap(354, 354, 354)
-            .addComponent(btnRegister)))
+        .addGap(316, 316, 316)
+        .addComponent(jLabel1)
         .addContainerGap(358, Short.MAX_VALUE))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(btnUserForm, javax.swing.GroupLayout.Alignment.TRAILING))
+        .addContainerGap())
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
         .addGap(80, 80, 80)
         .addComponent(jLabel1)
-        .addGap(73, 73, 73)
-        .addComponent(btnRegister)
-        .addContainerGap(322, Short.MAX_VALUE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 319, Short.MAX_VALUE)
+        .addComponent(btnUserForm)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jButton2)
+        .addGap(6, 6, 6)
+        .addComponent(jButton1)
+        .addContainerGap())
     );
 
     pack();
     setLocationRelativeTo(null);
   }// </editor-fold>//GEN-END:initComponents
+
+  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    new Home().setVisible(true);
+    this.setVisible(false);
+  }//GEN-LAST:event_jButton1ActionPerformed
+
+  private void btnUserFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserFormActionPerformed
+    new UserForm().setVisible(true);
+    this.setVisible(false);
+  }//GEN-LAST:event_btnUserFormActionPerformed
+
+  private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    new MovieForm().setVisible(true);
+    this.setVisible(false);
+  }//GEN-LAST:event_jButton2ActionPerformed
 
   /**
    * @param args the command line arguments
@@ -110,6 +155,8 @@ public class UserArea extends javax.swing.JFrame {
       java.util.logging.Logger.getLogger(UserArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
     //</editor-fold>
+    
+    System.out.println("args" +  args);
 
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
@@ -120,7 +167,9 @@ public class UserArea extends javax.swing.JFrame {
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton btnRegister;
+  private javax.swing.JButton btnUserForm;
+  private javax.swing.JButton jButton1;
+  private javax.swing.JButton jButton2;
   private javax.swing.JLabel jLabel1;
   // End of variables declaration//GEN-END:variables
 }

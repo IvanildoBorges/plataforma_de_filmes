@@ -8,10 +8,19 @@ import java.sql.Date;
  * @author Ivanildo Borges
  */
 public abstract class Person extends User {
+  private int id;
   private String name;
   private String telephone;
   private String address;
   private Date birthDate;
+  
+  public int getId() {
+    return id;
+  }
+  
+  public void setId(int id) {
+    this.id = id;
+  }
 
   public String getName() {
     return name;

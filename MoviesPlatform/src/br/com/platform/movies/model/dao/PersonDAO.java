@@ -80,6 +80,7 @@ public class PersonDAO extends InsertableOnDatabase{
         person = new Client();
       }
       
+      person.setId(rs.getInt(1));
       person.setName(rs.getString(2));
       person.setEmail(rs.getString(3));
       person.setTelephone(rs.getString(5));

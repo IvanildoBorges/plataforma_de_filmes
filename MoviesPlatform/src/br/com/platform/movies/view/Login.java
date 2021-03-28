@@ -116,8 +116,16 @@ public class Login extends javax.swing.JFrame {
     char pass[] = this.password.getPassword();
     
     try {
-      this.personController.login(email, new String(pass));
-      new UserArea().setVisible(true);
+      int personId = this.personController.login(email, new String(pass));
+      
+      System.out.println("personId" + personId);
+      System.out.println("ação do botão");
+      
+      UserArea userArea = new UserArea();
+      userArea.setTitle("bndjfnsdjkfnbjkdfn");
+      userArea.personId = 2;
+      userArea.setVisible(true);
+      
       this.setVisible(false);
     } catch (Exception ex) {
       JOptionPane.showMessageDialog(null, ex.getMessage());

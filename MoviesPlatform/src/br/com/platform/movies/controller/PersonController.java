@@ -44,8 +44,9 @@ public class PersonController {
   
   public void delete() {}
   
-  public void login(String email, String password) throws Exception {
-    this.personDAO.login(email, password);
+  public int login(String email, String password) throws Exception {
+    Person person = this.personDAO.login(email, password);
+    return person.getId();
   }
   
   public boolean checkIsAdmin(int personId) throws Exception {
