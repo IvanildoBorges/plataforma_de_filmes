@@ -47,4 +47,8 @@ public class PersonController {
   public void login(String email, String password) throws Exception {
     this.personDAO.login(email, password);
   }
+  
+  public boolean checkIsAdmin(int personId) throws Exception {
+    return this.personDAO.checkIsAdmin(personId);
+  }
 }

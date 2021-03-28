@@ -93,7 +93,29 @@ public class PersonDAO extends InsertableOnDatabase{
     }
   }
   
-    void close (Statement stmt) {
+  public boolean checkIsAdmin(int personId) throws Exception {
+    PreparedStatement pstmt = null;
+    
+    try {
+      pstmt = this.getConnection().prepareStatement("select is_admin from people where id = ?;");
+      pstmt.setInt(1, personId);
+      
+      ResultSet rs = pstmt.executeQuery();
+      
+      if (!rs.next()) {
+        throw new Exception("Usuário não encontrado");
+      }
+      
+      boolean isAdmin = rs.getBoolean(1);
+      
+      return isAdmin;
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      throw new Exception(e.getMessage());
+    }
+  }
+  
+  public void close (Statement stmt) {
     if (stmt != null)
       try {
         stmt.close();

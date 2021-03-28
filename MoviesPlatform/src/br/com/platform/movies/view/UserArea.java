@@ -5,17 +5,35 @@
  */
 package br.com.platform.movies.view;
 
+import br.com.platform.movies.controller.PersonController;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author elieu
  */
 public class UserArea extends javax.swing.JFrame {
+  boolean isAdmin = false;
+  PersonController personController = new PersonController();
 
   /**
    * Creates new form UserArea
    */
   public UserArea() {
+    this.currentlyLoggedInUserIsAdmin();
+    
     initComponents();
+    
+    this.btnRegister.setVisible(isAdmin);
+  }
+  
+  private void currentlyLoggedInUserIsAdmin() {
+    try {
+      isAdmin = this.personController.checkIsAdmin(1); // MOCK
+    } catch (Exception ex) {
+      Logger.getLogger(UserArea.class.getName()).log(Level.SEVERE, null, ex);
+    }
   }
 
   /**
@@ -28,6 +46,7 @@ public class UserArea extends javax.swing.JFrame {
   private void initComponents() {
 
     jLabel1 = new javax.swing.JLabel();
+    btnRegister = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Área do Usuário");
@@ -35,13 +54,20 @@ public class UserArea extends javax.swing.JFrame {
 
     jLabel1.setText("Área do usuário ao realizar login");
 
+    btnRegister.setText("cadastrar");
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(316, 316, 316)
-        .addComponent(jLabel1)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(layout.createSequentialGroup()
+            .addGap(316, 316, 316)
+            .addComponent(jLabel1))
+          .addGroup(layout.createSequentialGroup()
+            .addGap(354, 354, 354)
+            .addComponent(btnRegister)))
         .addContainerGap(358, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
@@ -49,7 +75,9 @@ public class UserArea extends javax.swing.JFrame {
       .addGroup(layout.createSequentialGroup()
         .addGap(80, 80, 80)
         .addComponent(jLabel1)
-        .addContainerGap(420, Short.MAX_VALUE))
+        .addGap(73, 73, 73)
+        .addComponent(btnRegister)
+        .addContainerGap(322, Short.MAX_VALUE))
     );
 
     pack();
@@ -92,6 +120,7 @@ public class UserArea extends javax.swing.JFrame {
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JButton btnRegister;
   private javax.swing.JLabel jLabel1;
   // End of variables declaration//GEN-END:variables
 }
