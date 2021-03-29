@@ -5,16 +5,22 @@
  */
 package br.com.platform.movies.view;
 
+import br.com.platform.movies.controller.PersonController;
+import java.sql.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author elieu
  */
 public class UserForm extends javax.swing.JFrame {
+  private PersonController personController;
 
   /**
    * Creates new form RegisterUser
    */
   public UserForm() {
+    this.personController = new PersonController();
     initComponents();
   }
 
@@ -74,6 +80,11 @@ public class UserForm extends javax.swing.JFrame {
     });
 
     btnConfirm.setText("Confirmar");
+    btnConfirm.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnConfirmActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
@@ -175,6 +186,27 @@ public class UserForm extends javax.swing.JFrame {
     new UserArea().setVisible(true);
     this.setVisible(false);
   }//GEN-LAST:event_btnCancelActionPerformed
+
+  private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
+    String name = this.name.getText();
+    String email = this.email.getText();
+    String phone = this.phone.getText();
+    String address = this.address.getText();
+    boolean isAdmin = this.isAdmin.isSelected();
+    String birthDate = this.birthDate.getText();
+    char[] password = this.password.getPassword();
+    char[] passwordConfimation = this.passwordConfimation.getPassword();
+    
+    try {
+      // MOCK
+      this.personController.create(name, email, new String(password), phone, address, new Date(1967, 2, 25));
+      JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso");
+      new UserArea().setVisible(true);
+      this.setVisible(false);
+    } catch (Exception ex) {
+      JOptionPane.showMessageDialog(null, ex.getMessage());
+    }
+  }//GEN-LAST:event_btnConfirmActionPerformed
 
   /**
    * @param args the command line arguments
