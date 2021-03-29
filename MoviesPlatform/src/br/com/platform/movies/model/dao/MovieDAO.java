@@ -3,8 +3,11 @@ package br.com.platform.movies.model.dao;
 import br.com.platform.movies.model.Movie;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -29,6 +32,7 @@ public class MovieDAO extends InsertableOnDatabase {
       e.printStackTrace();
     } finally {
       this.close(pstmt);
+      this.closeConnection(this.getConnection());
     }
     return ret;
   }
@@ -41,12 +45,62 @@ public class MovieDAO extends InsertableOnDatabase {
     return 0;
   }
   
-  public int list() {
-    return 0;
+  public List<Movie> list() {
+    PreparedStatement pstmt = null;
+    List movieslist = new ArrayList<>();
+
+    try {
+      pstmt = this.getConnection().prepareStatement("select * from movies;");
+      
+      ResultSet result = pstmt.executeQuery();
+      
+      while(result.next()) {
+        Movie movie = new Movie();
+        
+        movie.setName(result.getString(2));
+        movie.setGenre(result.getString(3));
+        movie.setDescription(result.getString(4));
+        movie.setDuration(result.getInt(5));
+        movie.setIsAvaiable(result.getBoolean(6));
+        movie.setAgeRange(result.getInt(7));
+        
+        movieslist.add(movie);
+      }
+      
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      this.close(pstmt);
+      this.closeConnection(this.getConnection());
+    }
+    return movieslist;
   }
   
-  public int findById() {
-    return 0;
+  public Movie findById(int id) throws Exception {
+    PreparedStatement pstmt = null;
+    Movie movie = new Movie();
+
+    try {
+      pstmt = this.getConnection().prepareStatement("select * from movies where id = ?;");
+      pstmt.setInt(1, id);
+      
+      ResultSet result = pstmt.executeQuery();
+      
+      result.next();
+      
+      movie.setName(result.getString(2));
+      movie.setGenre(result.getString(3));
+      movie.setDescription(result.getString(4));
+      movie.setDuration(result.getInt(5));
+      movie.setIsAvaiable(result.getBoolean(6));
+      movie.setAgeRange(result.getInt(7));
+    } catch (SQLException e) {
+      throw new Exception("Filme não encontrado");
+    } finally {
+      this.close(pstmt);
+      this.closeConnection(this.getConnection());
+    }
+    return movie;
   }
   
   void close (Statement stmt) {
@@ -56,5 +110,13 @@ public class MovieDAO extends InsertableOnDatabase {
       } catch (Exception e) {
         e.printStackTrace();
       }
+  }
+  
+  private void closeConnection(Connection connection) {
+    try {
+      connection.close();
+    } catch (Exception e) {
+      System.err.println("Erro when trying close database connection");
+    }
   }
 }
