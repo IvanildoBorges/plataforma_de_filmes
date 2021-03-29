@@ -96,6 +96,11 @@ public class Home extends javax.swing.JPanel {
         BotaoCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         BotaoCadastrar.setForeground(new java.awt.Color(137, 61, 140));
         BotaoCadastrar.setText("Cadastre-se");
+        BotaoCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoCadastrarActionPerformed(evt);
+            }
+        });
         add(BotaoCadastrar);
         BotaoCadastrar.setBounds(70, 420, 140, 40);
 
@@ -121,6 +126,11 @@ public class Home extends javax.swing.JPanel {
         BotaoEntrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         BotaoEntrar.setForeground(new java.awt.Color(137, 61, 140));
         BotaoEntrar.setText("Entrar");
+        BotaoEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoEntrarActionPerformed(evt);
+            }
+        });
         add(BotaoEntrar);
         BotaoEntrar.setBounds(600, 420, 150, 40);
 
@@ -136,6 +146,14 @@ public class Home extends javax.swing.JPanel {
         add(fundo);
         fundo.setBounds(0, 0, 940, 570);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BotaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoEntrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotaoEntrarActionPerformed
+
+    private void BotaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotaoCadastrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
