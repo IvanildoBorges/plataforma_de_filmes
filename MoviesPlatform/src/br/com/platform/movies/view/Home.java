@@ -5,14 +5,15 @@ package br.com.platform.movies.view;
  * @author Elieudo Maia
  * @author Ivaildo Borges
  */
-public class Home extends javax.swing.JPanel {
+public class Home extends javax.swing.JFrame {
 
     /**
-     * Creates new form Home
+     * Creates new form Home1
      */
     public Home() {
         initComponents();
         setSize(940, 600);
+        setResizable(false);
     }
 
     /**
@@ -25,72 +26,78 @@ public class Home extends javax.swing.JPanel {
     private void initComponents() {
 
         Logo = new javax.swing.JLabel();
+        Banner = new javax.swing.JLabel();
         Titulo1 = new javax.swing.JLabel();
         Titulo2 = new javax.swing.JLabel();
         Titulo3 = new javax.swing.JLabel();
         Titulo4 = new javax.swing.JLabel();
+        TextCadastrar = new javax.swing.JLabel();
         TextCadastrar1 = new javax.swing.JLabel();
         TextCadastrar2 = new javax.swing.JLabel();
-        TextCadastrar3 = new javax.swing.JLabel();
         BotaoCadastrar = new javax.swing.JButton();
+        TextLogin = new javax.swing.JLabel();
         TextLogin1 = new javax.swing.JLabel();
         TextLogin2 = new javax.swing.JLabel();
-        TextLogin3 = new javax.swing.JLabel();
-        BotaoEntrar = new javax.swing.JButton();
-        Banner = new javax.swing.JLabel();
-        fundo = new javax.swing.JLabel();
+        BotaoLogin = new javax.swing.JButton();
+        Background = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(940, 570));
-        setVerifyInputWhenFocusTarget(false);
-        setLayout(null);
+        getContentPane().setLayout(null);
 
         Logo.setFont(new java.awt.Font("Stencil", 0, 50)); // NOI18N
         Logo.setForeground(new java.awt.Color(255, 0, 0));
         Logo.setText("PLATAFORMA DE FILMES");
-        add(Logo);
-        Logo.setBounds(170, 20, 580, 80);
+        getContentPane().add(Logo);
+        Logo.setBounds(170, 20, 580, 60);
+
+        Banner.setForeground(new java.awt.Color(255, 255, 255));
+        Banner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/banner.png"))); // NOI18N
+        getContentPane().add(Banner);
+        Banner.setBounds(350, 100, 520, 170);
 
         Titulo1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Titulo1.setForeground(new java.awt.Color(255, 255, 255));
         Titulo1.setText("Notificação de estréias de filmes,");
-        add(Titulo1);
+        getContentPane().add(Titulo1);
         Titulo1.setBounds(70, 130, 300, 40);
 
         Titulo2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Titulo2.setForeground(new java.awt.Color(255, 255, 255));
         Titulo2.setText("acesso ilimitado a uma enorme");
-        add(Titulo2);
+        getContentPane().add(Titulo2);
         Titulo2.setBounds(70, 160, 300, 30);
 
         Titulo3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Titulo3.setForeground(new java.awt.Color(255, 255, 255));
         Titulo3.setText("banca de filmes nacionais e");
-        add(Titulo3);
+        getContentPane().add(Titulo3);
         Titulo3.setBounds(70, 190, 260, 30);
 
         Titulo4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Titulo4.setForeground(new java.awt.Color(255, 255, 255));
         Titulo4.setText("internacionais, e muito mais...");
-        add(Titulo4);
+        getContentPane().add(Titulo4);
         Titulo4.setBounds(70, 220, 310, 30);
+
+        TextCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        TextCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        TextCadastrar.setText("Cadastre-se aqui para ter");
+        getContentPane().add(TextCadastrar);
+        TextCadastrar.setBounds(70, 340, 200, 30);
 
         TextCadastrar1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         TextCadastrar1.setForeground(new java.awt.Color(255, 255, 255));
-        TextCadastrar1.setText("Cadastre-se aqui para ter");
-        add(TextCadastrar1);
-        TextCadastrar1.setBounds(70, 340, 200, 30);
+        TextCadastrar1.setText("acesso ilimitado a uma");
+        getContentPane().add(TextCadastrar1);
+        TextCadastrar1.setBounds(70, 360, 200, 30);
 
         TextCadastrar2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         TextCadastrar2.setForeground(new java.awt.Color(255, 255, 255));
-        TextCadastrar2.setText("acesso ilimitado a uma");
-        add(TextCadastrar2);
-        TextCadastrar2.setBounds(70, 360, 200, 30);
-
-        TextCadastrar3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        TextCadastrar3.setForeground(new java.awt.Color(255, 255, 255));
-        TextCadastrar3.setText("variedade de filmes.");
-        add(TextCadastrar3);
-        TextCadastrar3.setBounds(70, 380, 200, 30);
+        TextCadastrar2.setText("variedade de filmes.");
+        getContentPane().add(TextCadastrar2);
+        TextCadastrar2.setBounds(70, 380, 154, 30);
 
         BotaoCadastrar.setBackground(new java.awt.Color(255, 255, 255));
         BotaoCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -101,76 +108,71 @@ public class Home extends javax.swing.JPanel {
                 BotaoCadastrarActionPerformed(evt);
             }
         });
-        add(BotaoCadastrar);
+        getContentPane().add(BotaoCadastrar);
         BotaoCadastrar.setBounds(70, 420, 140, 40);
+
+        TextLogin.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        TextLogin.setForeground(new java.awt.Color(255, 255, 255));
+        TextLogin.setText("Já é usuário? Entre com sua  ");
+        getContentPane().add(TextLogin);
+        TextLogin.setBounds(600, 350, 220, 22);
 
         TextLogin1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         TextLogin1.setForeground(new java.awt.Color(255, 255, 255));
-        TextLogin1.setText("Já é usuário? Entre com sua  ");
-        add(TextLogin1);
-        TextLogin1.setBounds(600, 350, 220, 22);
+        TextLogin1.setText("conta e aproveite todos os ");
+        getContentPane().add(TextLogin1);
+        TextLogin1.setBounds(600, 370, 210, 22);
 
         TextLogin2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         TextLogin2.setForeground(new java.awt.Color(255, 255, 255));
-        TextLogin2.setText("conta e aproveite todos os ");
-        add(TextLogin2);
-        TextLogin2.setBounds(600, 370, 210, 22);
+        TextLogin2.setText("benefícios.");
+        getContentPane().add(TextLogin2);
+        TextLogin2.setBounds(600, 390, 83, 22);
 
-        TextLogin3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        TextLogin3.setForeground(new java.awt.Color(255, 255, 255));
-        TextLogin3.setText("benefícios.");
-        add(TextLogin3);
-        TextLogin3.setBounds(600, 390, 83, 22);
-
-        BotaoEntrar.setBackground(new java.awt.Color(255, 255, 255));
-        BotaoEntrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        BotaoEntrar.setForeground(new java.awt.Color(137, 61, 140));
-        BotaoEntrar.setText("Entrar");
-        BotaoEntrar.addActionListener(new java.awt.event.ActionListener() {
+        BotaoLogin.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoLogin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        BotaoLogin.setForeground(new java.awt.Color(137, 61, 140));
+        BotaoLogin.setText("Entrar");
+        BotaoLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoEntrarActionPerformed(evt);
+                BotaoLoginActionPerformed(evt);
             }
         });
-        add(BotaoEntrar);
-        BotaoEntrar.setBounds(600, 420, 150, 40);
+        getContentPane().add(BotaoLogin);
+        BotaoLogin.setBounds(600, 420, 150, 40);
 
-        Banner.setForeground(new java.awt.Color(255, 255, 255));
-        Banner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/banner.png"))); // NOI18N
-        add(Banner);
-        Banner.setBounds(340, 120, 520, 170);
+        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/Retângulo 1.jpg"))); // NOI18N
+        getContentPane().add(Background);
+        Background.setBounds(0, 0, 940, 570);
 
-        fundo.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/Retângulo 1.jpg"))); // NOI18N
-        fundo.setText("  acesso ilimitado a uma enorme  banca de filmes nacionais e  internacionais, e muito mais...");
-        fundo.setPreferredSize(new java.awt.Dimension(940, 570));
-        add(fundo);
-        fundo.setBounds(0, 0, 940, 570);
+        setSize(new java.awt.Dimension(957, 617));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BotaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoEntrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BotaoEntrarActionPerformed
+    private void BotaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoLoginActionPerformed
+        new Login().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_BotaoLoginActionPerformed
 
     private void BotaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastrarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotaoCadastrarActionPerformed
-
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Background;
     private javax.swing.JLabel Banner;
     private javax.swing.JButton BotaoCadastrar;
-    private javax.swing.JButton BotaoEntrar;
+    private javax.swing.JButton BotaoLogin;
     private javax.swing.JLabel Logo;
+    private javax.swing.JLabel TextCadastrar;
     private javax.swing.JLabel TextCadastrar1;
     private javax.swing.JLabel TextCadastrar2;
-    private javax.swing.JLabel TextCadastrar3;
+    private javax.swing.JLabel TextLogin;
     private javax.swing.JLabel TextLogin1;
     private javax.swing.JLabel TextLogin2;
-    private javax.swing.JLabel TextLogin3;
     private javax.swing.JLabel Titulo1;
     private javax.swing.JLabel Titulo2;
     private javax.swing.JLabel Titulo3;
     private javax.swing.JLabel Titulo4;
-    private javax.swing.JLabel fundo;
     // End of variables declaration//GEN-END:variables
 }

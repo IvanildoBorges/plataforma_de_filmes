@@ -1,7 +1,5 @@
 package br.com.platform.movies.model;
 
-import com.sun.org.glassfish.gmbal.Description;
-
 /**
  *
  * @author Elieudo Maia

@@ -14,7 +14,8 @@ import java.util.List;
 
 /**
  *
- * @author elieu
+ * @author Elieudo Maia
+ * @author Ivanildo Borges
  */
 public class PersonDAO extends InsertableOnDatabase{
   public List<Person> listAll() {

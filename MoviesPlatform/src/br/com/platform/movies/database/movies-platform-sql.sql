@@ -17,7 +17,8 @@ create table people (
   password varchar(255) not null,
   telephone varchar(16) not null,
   address varchar (255),
-  is_admin boolean not null default false
+  is_admin boolean not null default false,
+  birth_date date
 );
 
 create table people_movies (

@@ -1,19 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.platform.movies.controller;
 
 import br.com.platform.movies.model.Administrator;
 import br.com.platform.movies.model.Person;
 import br.com.platform.movies.model.dao.PersonDAO;
 import java.sql.Date;
-import java.util.List;
 
 /**
  *
- * @author elieu
+ * @author Elieudo Maia
+ * @author Ivanildo Borges
  */
 public class PersonController {
   private PersonDAO personDAO;
@@ -22,9 +17,13 @@ public class PersonController {
     this.personDAO = new PersonDAO();
   }
   
-  public void listAll() {}
+  public void listAll() {
+      
+  }
   
-  public void getById() {}
+  public void getById() {
+      
+  }
   
   public void create(String name, String email, String password, String telephone, String address, Date birthDate) throws Exception {
     // TODO - Verificar se quem quer criar o usuário tem permissão de Admin
@@ -40,9 +39,13 @@ public class PersonController {
     this.personDAO.createPerson(client, true);
   }
   
-  public void update() {}
+  public void update() {
+      
+  }
   
-  public void delete() {}
+  public void delete() {
+      
+  }
   
   public int login(String email, String password) throws Exception {
     Person person = this.personDAO.login(email, password);
