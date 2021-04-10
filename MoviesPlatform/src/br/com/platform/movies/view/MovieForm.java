@@ -5,16 +5,21 @@
  */
 package br.com.platform.movies.view;
 
+import br.com.platform.movies.controller.MovieController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author elieu
  */
 public class MovieForm extends javax.swing.JFrame {
+  private MovieController movieController;
 
   /**
    * Creates new form MovieForm
    */
   public MovieForm() {
+    this.movieController = new MovieController();
     initComponents();
   }
 
@@ -28,16 +33,55 @@ public class MovieForm extends javax.swing.JFrame {
   private void initComponents() {
 
     jPanel1 = new javax.swing.JPanel();
-    jButton1 = new javax.swing.JButton();
+    cancel = new javax.swing.JButton();
+    jLabel1 = new javax.swing.JLabel();
+    jLabel2 = new javax.swing.JLabel();
+    jLabel3 = new javax.swing.JLabel();
+    jLabel4 = new javax.swing.JLabel();
+    jLabel5 = new javax.swing.JLabel();
+    isAvailable = new javax.swing.JCheckBox();
+    name = new javax.swing.JTextField();
+    genre = new javax.swing.JComboBox<>();
+    jScrollPane1 = new javax.swing.JScrollPane();
+    description = new javax.swing.JTextArea();
+    register = new javax.swing.JButton();
+    duration = new javax.swing.JSpinner();
+    ageRange = new javax.swing.JSpinner();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Cadastrar Filme");
     setResizable(false);
 
-    jButton1.setText("Cancelar");
-    jButton1.addActionListener(new java.awt.event.ActionListener() {
+    cancel.setText("Cancelar");
+    cancel.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton1ActionPerformed(evt);
+        cancelActionPerformed(evt);
+      }
+    });
+
+    jLabel1.setText("Nome:");
+
+    jLabel2.setText("Gênero:");
+
+    jLabel3.setText("Descrição:");
+
+    jLabel4.setText("Duração:");
+
+    jLabel5.setText("Faixa Etária:");
+
+    isAvailable.setText("Disponível");
+
+    genre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ação", "Romance", "Comédia", "Terror", "Ficção Científica", "Drama", "Aventura", "Biográfico", "Histórico", "Fantasia", "Musical" }));
+
+    description.setColumns(20);
+    description.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+    description.setRows(5);
+    jScrollPane1.setViewportView(description);
+
+    register.setText("Cadastrar");
+    register.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        registerActionPerformed(evt);
       }
     });
 
@@ -45,16 +89,63 @@ public class MovieForm extends javax.swing.JFrame {
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-        .addContainerGap(614, Short.MAX_VALUE)
-        .addComponent(jButton1)
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(cancel)
+            .addGap(18, 18, 18)
+            .addComponent(register))
+          .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addComponent(jLabel2)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(genre, 0, 234, Short.MAX_VALUE)
+            .addGap(28, 28, 28)
+            .addComponent(jLabel5)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(ageRange, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addComponent(jLabel4)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(duration, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addComponent(jLabel1)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(name))
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(jLabel3)
+              .addComponent(isAvailable))
+            .addGap(0, 0, Short.MAX_VALUE)))
         .addContainerGap())
     );
     jPanel1Layout.setVerticalGroup(
       jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-        .addContainerGap(418, Short.MAX_VALUE)
-        .addComponent(jButton1)
+        .addGap(34, 34, 34)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(jLabel1))
+        .addGap(11, 11, 11)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel2)
+          .addComponent(jLabel5)
+          .addComponent(jLabel4)
+          .addComponent(genre)
+          .addComponent(duration, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(ageRange, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jLabel3)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(18, 18, 18)
+        .addComponent(isAvailable)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(register, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addContainerGap())
     );
 
@@ -62,23 +153,41 @@ public class MovieForm extends javax.swing.JFrame {
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(layout.createSequentialGroup()
-        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(0, 0, Short.MAX_VALUE))
+      .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
 
     pack();
     setLocationRelativeTo(null);
   }// </editor-fold>//GEN-END:initComponents
 
-  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+  private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
     new UserArea().setVisible(true);
     this.setVisible(false);
-  }//GEN-LAST:event_jButton1ActionPerformed
+  }//GEN-LAST:event_cancelActionPerformed
+
+  private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
+    String name = this.name.getText();
+    String genre = (String) this.genre.getSelectedItem();
+    int ageRange = (int) this.ageRange.getValue();
+    int duration = (int) this.duration.getValue();
+    String description= this.description.getText();
+    boolean isAvailable = this.isAvailable.isSelected();
+    
+    try {
+      this.movieController.createMovie(name, genre, description, duration, isAvailable, ageRange);
+      
+      JOptionPane.showMessageDialog(null, "Filme cadastrado com sucesso");
+      
+      new UserArea().setVisible(true);
+      this.setVisible(false);
+    } catch (Exception e) {
+      JOptionPane.showMessageDialog(null, e.getMessage());
+    }
+  }//GEN-LAST:event_registerActionPerformed
 
   /**
    * @param args the command line arguments
@@ -116,7 +225,20 @@ public class MovieForm extends javax.swing.JFrame {
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton jButton1;
+  private javax.swing.JSpinner ageRange;
+  private javax.swing.JButton cancel;
+  private javax.swing.JTextArea description;
+  private javax.swing.JSpinner duration;
+  private javax.swing.JComboBox<String> genre;
+  private javax.swing.JCheckBox isAvailable;
+  private javax.swing.JLabel jLabel1;
+  private javax.swing.JLabel jLabel2;
+  private javax.swing.JLabel jLabel3;
+  private javax.swing.JLabel jLabel4;
+  private javax.swing.JLabel jLabel5;
   private javax.swing.JPanel jPanel1;
+  private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JTextField name;
+  private javax.swing.JButton register;
   // End of variables declaration//GEN-END:variables
 }
