@@ -47,7 +47,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         Title.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        Title.setForeground(new java.awt.Color(255, 255, 255));
+        Title.setForeground(new java.awt.Color(130, 19, 138));
         Title.setText("LOGIN");
         jPanel1.add(Title);
         Title.setBounds(260, 50, 120, 50);
@@ -98,30 +98,30 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-  private void butaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butaoLoginActionPerformed
-    String email = this.camporEmail.getText();
-    char pass[] = this.campoPassword.getPassword();
-    
-    try {
-      int personId = this.personController.login(email, new String(pass));
-      
-      System.out.println("personId" + personId);
-      System.out.println("ação do botão");
-      
-//      boolean adm = this.personController.checkIsAdmin(personId);
-//      if (adm) {
-//        UserArea userArea = new UserArea();
-//        userArea.personId = 2;
-//        userArea.setVisible(true);
-//      } else {
-//        MyAccount minhaConta = new MyAccount();
-//        minhaConta.setVisible(true);
-//      }
-      this.setVisible(false);
-    } catch (Exception ex) {
-      JOptionPane.showMessageDialog(null, ex.getMessage());
-    }
-  }//GEN-LAST:event_butaoLoginActionPerformed
+    private void butaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butaoLoginActionPerformed
+        String email = this.camporEmail.getText();
+        char pass[] = this.campoPassword.getPassword();
+
+        try {
+            int personId = this.personController.login(email, new String(pass));
+
+            System.out.println("personId" + personId);
+            System.out.println("ação do botão");
+
+//                boolean adm = this.personController.checkIsAdmin(personId);
+//                if (adm) {
+//                    UserArea userArea = new UserArea();
+//                    userArea.personId = 2;
+//                    userArea.setVisible(true);
+//                } else {
+//                    MyAccount minhaConta = new MyAccount();
+//                    minhaConta.setVisible(true);
+//                }
+            this.setVisible(false);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_butaoLoginActionPerformed
 
   /**
    * @param args the command line arguments

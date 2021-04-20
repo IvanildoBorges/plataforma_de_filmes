@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.platform.movies.view;
 
 import br.com.platform.movies.controller.PersonController;
@@ -11,7 +6,8 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author elieu
+ * @author elieudo Maia
+ * @author Ivanildo Borges
  */
 public class UserForm extends javax.swing.JFrame {
   private PersonController personController;
@@ -64,7 +60,7 @@ public class UserForm extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         Title.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        Title.setForeground(new java.awt.Color(255, 255, 255));
+        Title.setForeground(new java.awt.Color(130, 19, 138));
         Title.setText("CADASTRO");
         jPanel1.add(Title);
         Title.setBounds(360, 40, 200, 32);

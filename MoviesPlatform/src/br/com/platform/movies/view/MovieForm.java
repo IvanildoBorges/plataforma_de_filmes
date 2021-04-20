@@ -145,7 +145,7 @@ public class MovieForm extends javax.swing.JFrame {
         ageRange.setBounds(590, 220, 100, 30);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setForeground(new java.awt.Color(130, 19, 138));
         jLabel7.setText("CADASTRO");
         jPanel1.add(jLabel7);
         jLabel7.setBounds(360, 40, 200, 32);

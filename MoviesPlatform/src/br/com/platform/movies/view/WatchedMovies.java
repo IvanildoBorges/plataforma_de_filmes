@@ -1,20 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.platform.movies.view;
 
 /**
  *
- * @author ivani
+ * @author Elieudo Maia
+ * @author Ivanildo Borges
  */
-public class FindNameMovie extends javax.swing.JFrame {
+public class WatchedMovies extends javax.swing.JFrame {
 
     /**
-     * Creates new form FindNameMovie
+     * Creates new form WatchedMovies
      */
-    public FindNameMovie() {
+    public WatchedMovies() {
         initComponents();
     }
 
@@ -29,15 +25,13 @@ public class FindNameMovie extends javax.swing.JFrame {
 
         Logo = new javax.swing.JLabel();
         back = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        areaText = new javax.swing.JTextArea();
-        watch = new javax.swing.JButton();
-        info = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        tableMoviesWatcheds = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         backGround = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Buscar Filme");
-        setResizable(false);
+        setTitle("Filmes Assistidos");
         getContentPane().setLayout(null);
 
         Logo.setFont(new java.awt.Font("Stencil", 0, 50)); // NOI18N
@@ -57,29 +51,47 @@ public class FindNameMovie extends javax.swing.JFrame {
         getContentPane().add(back);
         back.setBounds(20, 30, 90, 29);
 
-        areaText.setEditable(false);
-        areaText.setColumns(20);
-        areaText.setRows(5);
-        jScrollPane1.setViewportView(areaText);
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(130, 19, 138));
+        jLabel4.setText("Lista de filmes assistidos");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(330, 160, 300, 30);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(210, 170, 540, 160);
+        tableMoviesWatcheds.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        watch.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        watch.setForeground(new java.awt.Color(137, 61, 140));
-        watch.setText("ASSISTIR");
-        getContentPane().add(watch);
-        watch.setBounds(210, 350, 120, 29);
+        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Filme", "Gênero", "Classificação", "Duração"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
-        info.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        info.setForeground(new java.awt.Color(137, 61, 140));
-        info.setText("Ver Informações");
-        getContentPane().add(info);
-        info.setBounds(350, 350, 150, 29);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.setRowHeight(22);
+        tableMoviesWatcheds.setViewportView(jTable1);
+
+        getContentPane().add(tableMoviesWatcheds);
+        tableMoviesWatcheds.setBounds(130, 210, 720, 210);
 
         backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/Retângulo 1.jpg"))); // NOI18N
         getContentPane().add(backGround);
-        backGround.setBounds(0, 0, 970, 600);
+        backGround.setBounds(0, 0, 960, 590);
 
         setSize(new java.awt.Dimension(958, 617));
         setLocationRelativeTo(null);
@@ -107,31 +119,30 @@ public class FindNameMovie extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FindNameMovie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WatchedMovies.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FindNameMovie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WatchedMovies.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FindNameMovie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WatchedMovies.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FindNameMovie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WatchedMovies.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FindNameMovie().setVisible(true);
+                new WatchedMovies().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Logo;
-    private javax.swing.JTextArea areaText;
     private javax.swing.JButton back;
     private javax.swing.JLabel backGround;
-    private javax.swing.JButton info;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton watch;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane tableMoviesWatcheds;
     // End of variables declaration//GEN-END:variables
 }

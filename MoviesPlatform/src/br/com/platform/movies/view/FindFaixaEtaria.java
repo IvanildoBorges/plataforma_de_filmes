@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.platform.movies.view;
 
 /**
  *
- * @author ivani
+ * @author Elieudo Maia
+ * @author Ivanildo Borges
  */
 public class FindFaixaEtaria extends javax.swing.JFrame {
 
@@ -38,6 +34,7 @@ public class FindFaixaEtaria extends javax.swing.JFrame {
         backGround = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Buscar classificação etádria de filme");
         getContentPane().setLayout(null);
 
         Logo.setFont(new java.awt.Font("Stencil", 0, 50)); // NOI18N
@@ -49,6 +46,11 @@ public class FindFaixaEtaria extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(137, 61, 140));
         jButton3.setText("VOLTAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3);
         jButton3.setBounds(20, 30, 90, 29);
 
@@ -99,6 +101,11 @@ public class FindFaixaEtaria extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        new MyAccount().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

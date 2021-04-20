@@ -1,21 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.platform.movies.view;
+
+import br.com.platform.movies.controller.MovieController;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author ivani
+ * @author Elieudo Maia 
+ * @author Ivanildo Borges
  */
 public class AllMovie extends javax.swing.JFrame {
+    private MovieController movieController;
+    private List movieList;
 
     /**
      * Creates new form AllMovie
      */
     public AllMovie() {
+        this.movieController = new MovieController();
+        this.movieList = new ArrayList<>();
         initComponents();
+        show();
     }
 
     /**
@@ -31,9 +37,9 @@ public class AllMovie extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        TextArea = new javax.swing.JTextArea();
+        campoText = new javax.swing.JTextField();
+        search = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         backGround = new javax.swing.JLabel();
 
@@ -52,6 +58,11 @@ public class AllMovie extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(137, 61, 140));
         jButton1.setText("VOLTAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
         jButton1.setBounds(20, 30, 90, 29);
 
@@ -61,29 +72,29 @@ public class AllMovie extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(340, 120, 280, 40);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        TextArea.setEditable(false);
+        TextArea.setColumns(20);
+        TextArea.setRows(5);
+        jScrollPane1.setViewportView(TextArea);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(210, 170, 540, 160);
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(51, 51, 51));
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(210, 410, 400, 26);
+        campoText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        campoText.setForeground(new java.awt.Color(51, 51, 51));
+        getContentPane().add(campoText);
+        campoText.setBounds(210, 410, 400, 26);
 
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(137, 61, 140));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/button_search.jpg"))); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        search.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        search.setForeground(new java.awt.Color(137, 61, 140));
+        search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/button_search.jpg"))); // NOI18N
+        search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                searchActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5);
-        jButton5.setBounds(620, 410, 160, 30);
+        getContentPane().add(search);
+        search.setBounds(620, 410, 160, 30);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -98,10 +109,42 @@ public class AllMovie extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(958, 617));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    
+//    //funcão para mostrar todos os filmes
+//    public void show() {
+//        movieList = this.movieController.listAll();
+//        String str = "";
+//        
+//        try {
+//            for (Object object : movieList) {
+//                str = object.toString();
+//                TextArea.setText(str);
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e.getMessage());
+//        }
+//    }
+    
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+        String movie = campoText.getText();
+        
+//        try {
+//            //comparar se exite nome do filme e mostrar a tela findNameMovie
+//            if (movie == "") {
+//                
+//            } else {
+//                
+//            }
+//            
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e.getMessage());
+//        }
+    }//GEN-LAST:event_searchActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new MyAccount().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,13 +183,13 @@ public class AllMovie extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Logo;
+    private javax.swing.JTextArea TextArea;
     private javax.swing.JLabel backGround;
+    private javax.swing.JTextField campoText;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton search;
     // End of variables declaration//GEN-END:variables
 }

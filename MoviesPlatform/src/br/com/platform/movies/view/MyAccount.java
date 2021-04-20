@@ -1,5 +1,7 @@
 package br.com.platform.movies.view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Ivanildo Borges
@@ -24,18 +26,18 @@ public class MyAccount extends javax.swing.JFrame {
     private void initComponents() {
 
         Logo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        perfil = new javax.swing.JButton();
+        estatisticsNerds = new javax.swing.JButton();
+        watchedMovies = new javax.swing.JButton();
+        allMovies = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        campoText = new javax.swing.JTextField();
+        search = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        lanc1 = new javax.swing.JButton();
+        lanc2 = new javax.swing.JButton();
+        lanc3 = new javax.swing.JButton();
         backGround = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,37 +52,47 @@ public class MyAccount extends javax.swing.JFrame {
         getContentPane().add(Logo);
         Logo.setBounds(170, 20, 580, 60);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/avatar_user.jpg"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        perfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/avatar_user.jpg"))); // NOI18N
+        perfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                perfilActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(840, 10, 90, 90);
+        getContentPane().add(perfil);
+        perfil.setBounds(840, 10, 90, 90);
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(137, 61, 140));
-        jButton2.setText("Estatisticas para nerds");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        estatisticsNerds.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        estatisticsNerds.setForeground(new java.awt.Color(137, 61, 140));
+        estatisticsNerds.setText("Estatisticas para nerds");
+        estatisticsNerds.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                estatisticsNerdsActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(490, 100, 180, 40);
+        getContentPane().add(estatisticsNerds);
+        estatisticsNerds.setBounds(490, 100, 180, 40);
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(137, 61, 140));
-        jButton3.setText("Filmes Assistidos");
-        getContentPane().add(jButton3);
-        jButton3.setBounds(330, 100, 150, 40);
+        watchedMovies.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        watchedMovies.setForeground(new java.awt.Color(137, 61, 140));
+        watchedMovies.setText("Filmes Assistidos");
+        watchedMovies.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                watchedMoviesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(watchedMovies);
+        watchedMovies.setBounds(330, 100, 150, 40);
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(137, 61, 140));
-        jButton4.setText("Todos os Filmes");
-        getContentPane().add(jButton4);
-        jButton4.setBounds(180, 100, 140, 40);
+        allMovies.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        allMovies.setForeground(new java.awt.Color(137, 61, 140));
+        allMovies.setText("Todos os Filmes");
+        allMovies.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allMoviesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(allMovies);
+        allMovies.setBounds(180, 100, 140, 40);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -94,21 +106,21 @@ public class MyAccount extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(170, 290, 150, 30);
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(51, 51, 51));
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(170, 330, 400, 26);
+        campoText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        campoText.setForeground(new java.awt.Color(51, 51, 51));
+        getContentPane().add(campoText);
+        campoText.setBounds(170, 330, 400, 26);
 
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(137, 61, 140));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/button_search.jpg"))); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        search.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        search.setForeground(new java.awt.Color(137, 61, 140));
+        search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/button_search.jpg"))); // NOI18N
+        search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                searchActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5);
-        jButton5.setBounds(570, 330, 170, 30);
+        getContentPane().add(search);
+        search.setBounds(570, 330, 170, 30);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -116,20 +128,20 @@ public class MyAccount extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(170, 460, 150, 30);
 
-        jButton7.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jButton7.setText("Lançamento 1");
-        getContentPane().add(jButton7);
-        jButton7.setBounds(170, 490, 200, 40);
+        lanc1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lanc1.setText("Lançamento 1");
+        getContentPane().add(lanc1);
+        lanc1.setBounds(170, 490, 200, 40);
 
-        jButton8.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jButton8.setText("Lançamento 2");
-        getContentPane().add(jButton8);
-        jButton8.setBounds(380, 490, 200, 40);
+        lanc2.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lanc2.setText("Lançamento 2");
+        getContentPane().add(lanc2);
+        lanc2.setBounds(380, 490, 200, 40);
 
-        jButton9.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jButton9.setText("Lançamento 3");
-        getContentPane().add(jButton9);
-        jButton9.setBounds(590, 490, 200, 40);
+        lanc3.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        lanc3.setText("Lançamento 3");
+        getContentPane().add(lanc3);
+        lanc3.setBounds(590, 490, 200, 40);
 
         backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/Retângulo 1.jpg"))); // NOI18N
         getContentPane().add(backGround);
@@ -139,17 +151,35 @@ public class MyAccount extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void estatisticsNerdsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estatisticsNerdsActionPerformed
+        new EstatisticsNerds().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_estatisticsNerdsActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+        String valor = campoText.getText();
+        
+        try {
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_searchActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void perfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilActionPerformed
+        new Perfil().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_perfilActionPerformed
+
+    private void allMoviesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allMoviesActionPerformed
+        new AllMovie().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_allMoviesActionPerformed
+
+    private void watchedMoviesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_watchedMoviesActionPerformed
+        new WatchedMovies().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_watchedMoviesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,18 +219,18 @@ public class MyAccount extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Logo;
+    private javax.swing.JButton allMovies;
     private javax.swing.JLabel backGround;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JTextField campoText;
+    private javax.swing.JButton estatisticsNerds;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton lanc1;
+    private javax.swing.JButton lanc2;
+    private javax.swing.JButton lanc3;
+    private javax.swing.JButton perfil;
+    private javax.swing.JButton search;
+    private javax.swing.JButton watchedMovies;
     // End of variables declaration//GEN-END:variables
 }
