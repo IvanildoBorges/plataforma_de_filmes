@@ -67,31 +67,31 @@ public class UserForm extends javax.swing.JFrame {
         Title.setForeground(new java.awt.Color(255, 255, 255));
         Title.setText("CADASTRO");
         jPanel1.add(Title);
-        Title.setBounds(380, 30, 191, 60);
+        Title.setBounds(360, 40, 200, 32);
 
         textName.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         textName.setForeground(new java.awt.Color(255, 255, 255));
         textName.setText("Nome:");
         jPanel1.add(textName);
-        textName.setBounds(50, 140, 60, 22);
+        textName.setBounds(60, 120, 60, 22);
 
         textEmail.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         textEmail.setForeground(new java.awt.Color(255, 255, 255));
         textEmail.setText("Email:");
         jPanel1.add(textEmail);
-        textEmail.setBounds(540, 140, 47, 22);
+        textEmail.setBounds(540, 120, 47, 22);
 
         textTel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         textTel.setForeground(new java.awt.Color(255, 255, 255));
         textTel.setText("Telefone:");
         jPanel1.add(textTel);
-        textTel.setBounds(540, 180, 71, 22);
+        textTel.setBounds(540, 170, 71, 22);
 
         textAddress.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         textAddress.setForeground(new java.awt.Color(255, 255, 255));
         textAddress.setText("Endereço:");
         jPanel1.add(textAddress);
-        textAddress.setBounds(50, 180, 75, 22);
+        textAddress.setBounds(60, 170, 75, 22);
 
         textBirth.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         textBirth.setForeground(new java.awt.Color(255, 255, 255));
@@ -103,17 +103,22 @@ public class UserForm extends javax.swing.JFrame {
         textPassword.setForeground(new java.awt.Color(255, 255, 255));
         textPassword.setText("Senha:");
         jPanel1.add(textPassword);
-        textPassword.setBounds(50, 220, 51, 22);
+        textPassword.setBounds(60, 220, 51, 22);
 
         isAdmin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         isAdmin.setForeground(new java.awt.Color(137, 61, 140));
         isAdmin.setText("Administrador");
+        isAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                isAdminActionPerformed(evt);
+            }
+        });
         jPanel1.add(isAdmin);
-        isAdmin.setBounds(450, 300, 110, 30);
+        isAdmin.setBounds(540, 280, 110, 30);
         jPanel1.add(name);
-        name.setBounds(120, 140, 367, 22);
+        name.setBounds(60, 140, 367, 22);
         jPanel1.add(email);
-        email.setBounds(600, 140, 310, 22);
+        email.setBounds(540, 140, 310, 22);
 
         phone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,21 +126,21 @@ public class UserForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(phone);
-        phone.setBounds(620, 180, 190, 22);
+        phone.setBounds(540, 190, 190, 22);
         jPanel1.add(address);
-        address.setBounds(140, 180, 350, 22);
+        address.setBounds(60, 190, 350, 22);
         jPanel1.add(birthDate);
-        birthDate.setBounds(710, 220, 180, 22);
+        birthDate.setBounds(540, 240, 180, 22);
 
         textConfirmPassword.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         textConfirmPassword.setForeground(new java.awt.Color(255, 255, 255));
         textConfirmPassword.setText("Confirmar Senha:");
         jPanel1.add(textConfirmPassword);
-        textConfirmPassword.setBounds(50, 250, 132, 22);
+        textConfirmPassword.setBounds(60, 270, 132, 22);
         jPanel1.add(password);
-        password.setBounds(120, 220, 250, 22);
+        password.setBounds(60, 240, 250, 22);
         jPanel1.add(passwordConfimation);
-        passwordConfimation.setBounds(190, 250, 230, 22);
+        passwordConfimation.setBounds(60, 290, 250, 22);
 
         btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnCancel.setForeground(new java.awt.Color(137, 61, 140));
@@ -146,7 +151,7 @@ public class UserForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnCancel);
-        btnCancel.setBounds(360, 370, 120, 33);
+        btnCancel.setBounds(300, 360, 120, 33);
 
         btnConfirm.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnConfirm.setForeground(new java.awt.Color(137, 61, 140));
@@ -157,7 +162,7 @@ public class UserForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnConfirm);
-        btnConfirm.setBounds(520, 370, 117, 33);
+        btnConfirm.setBounds(460, 360, 117, 33);
 
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/Retângulo 1.jpg"))); // NOI18N
         jPanel1.add(Background);
@@ -167,7 +172,7 @@ public class UserForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 951, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 952, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,6 +214,10 @@ public class UserForm extends javax.swing.JFrame {
     private void phoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_phoneActionPerformed
+
+    private void isAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_isAdminActionPerformed
 
   /**
    * @param args the command line arguments

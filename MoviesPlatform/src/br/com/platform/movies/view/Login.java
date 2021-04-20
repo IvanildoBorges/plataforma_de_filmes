@@ -5,15 +5,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
- * @author elieu
+ * @author Elieudo Maia
+ * @author Ivanildo Borges
  */
 public class Login extends javax.swing.JFrame {
   private PersonController personController;
@@ -113,11 +108,15 @@ public class Login extends javax.swing.JFrame {
       System.out.println("personId" + personId);
       System.out.println("ação do botão");
       
-      UserArea userArea = new UserArea();
-      userArea.setTitle("bndjfnsdjkfnbjkdfn");
-      userArea.personId = 2;
-      userArea.setVisible(true);
-      
+//      boolean adm = this.personController.checkIsAdmin(personId);
+//      if (adm) {
+//        UserArea userArea = new UserArea();
+//        userArea.personId = 2;
+//        userArea.setVisible(true);
+//      } else {
+//        MyAccount minhaConta = new MyAccount();
+//        minhaConta.setVisible(true);
+//      }
       this.setVisible(false);
     } catch (Exception ex) {
       JOptionPane.showMessageDialog(null, ex.getMessage());
