@@ -18,8 +18,8 @@ public class MovieController {
     this.movieDAO = new MovieDAO();
   }
   
-  public List<Movie> listAll() {
-    List movies = this.movieDAO.list();
+  public List<Movie> listAll(String nameFilter, String genreFilter, int ageRangeFilter) {
+    List movies = this.movieDAO.list(nameFilter, genreFilter, ageRangeFilter);
     return movies;
   }
   

@@ -65,12 +65,26 @@ public class MovieDAO extends InsertableOnDatabase {
     return 0;
   }
   
-  public List<Movie> list() {
+  public List<Movie> list(String nameFilter, String genreFilter, int ageRange) {
     PreparedStatement pstmt = null;
     List movieslist = new ArrayList<>();
+    
+    String sql = "select * from movies";
+    
+    if (!nameFilter.isEmpty()) {
+      sql = sql +  " where name ilike '%" + nameFilter + "%'";
+    } else if (!genreFilter.isEmpty()) {
+      sql = sql +  " where genre ilike '%" + genreFilter + "%'";
+    } else if (ageRange > 0) {
+      sql = sql +  " where age_range = " + ageRange;
+    }
+    
+    sql += ";";
+    
+    System.out.println(sql);
 
     try {
-      pstmt = this.getConnection().prepareStatement("select * from movies;");
+      pstmt = this.getConnection().prepareStatement(sql);
       
       ResultSet result = pstmt.executeQuery();
       

@@ -15,16 +15,16 @@ import java.util.List;
  */
 public class Main {
   public static void main(String[] args) throws ParseException {
-      System.out.println("Starting application ...");
-      new Home().setVisible(true);
+//      System.out.println("Starting application ...");
+//      new Home().setVisible(true);
     
-//    MovieController mc = new MovieController();
+    MovieController mc = new MovieController();
 //    
 //    //criando filme
 //    mc.createMovie("Hora de dormir", "Humor", "Filme de humor", 130, true, 14);
 //
 //    //Listando todos os filmes
-//    List<Movie> listaFilmes = mc.listAll();
+//    List<Movie> listaFilmes = mc.listAll("", "", 0);
 //    
 //    for(Movie m : listaFilmes) {
 //      System.out.println(m.getName());
