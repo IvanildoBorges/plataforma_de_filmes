@@ -8,6 +8,7 @@ package br.com.platform.movies.controller;
 import br.com.platform.movies.model.Movie;
 import br.com.platform.movies.model.dao.MoviePersonDAO;
 import br.com.platform.movies.model.dao.MovieDAO;
+import java.util.List;
 
 /**
  *
@@ -35,5 +36,10 @@ public class MoviePersonController {
     }
     
     this.moviePersonDAO.watchMovie(userId, movieId, totalMinutesWatched);
+  }
+  
+  public List<Movie> getWatchedFilms (int userId) {
+    List movies = this.moviePersonDAO.getWatchedMovies(userId);
+    return movies;
   }
 }

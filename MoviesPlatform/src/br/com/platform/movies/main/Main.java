@@ -69,10 +69,16 @@ public class Main {
 //    
 //    // assitir filme
 //    try {
-//      mpc.setWatchedMovie(2, 1, 20);
+//      mpc.setWatchedMovie(1, 1, 20);
 //    } catch (Exception e) {
 //      System.out.println(e.getMessage());
 //    }
-    
+
+//      List<Movie> movies = mpc.getWatchedFilms(1);
+//      for(Movie m : movies) {
+//        System.out.println(m.getName());
+//        System.out.println(m.getDescription());
+//        System.out.println(m.getDuration());
+//      }
   }
 }
