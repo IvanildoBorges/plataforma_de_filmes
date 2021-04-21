@@ -37,8 +37,28 @@ public class MovieDAO extends InsertableOnDatabase {
     return ret;
   }
   
-  public int update() {
-    return 0;
+  public int update(int id, Movie movie) {
+    PreparedStatement pstmt = null;
+    int ret = 0;
+    try {
+      pstmt = this.getConnection().prepareStatement("update movies set name=?, genre=?, description=?, duration_in_minutes=?, is_available=?, age_range=? where id = ?;");
+      pstmt.setString(1, movie.getName());
+      pstmt.setString(2, movie.getGenre());
+      pstmt.setString(3, movie.getDescription());
+      pstmt.setInt(4, movie.getDuration());
+      pstmt.setBoolean(5, movie.isIsAvaiable());
+      pstmt.setInt(6, movie.getAgeRange());
+      pstmt.setInt(7, id);
+
+      ret = pstmt.executeUpdate();
+    } catch (SQLException e) {
+      String errorMessage = "Erro ao atualizar filme";
+      System.out.println(errorMessage + e.getMessage());
+    } finally {
+      // this.close(pstmt);
+      //this.closeConnection(this.getConnection());
+    }
+    return ret;
   }
   
   public int delete() {
@@ -95,10 +115,9 @@ public class MovieDAO extends InsertableOnDatabase {
       movie.setIsAvaiable(result.getBoolean(6));
       movie.setAgeRange(result.getInt(7));
     } catch (SQLException e) {
-      throw new Exception("Filme não encontrado");
-    } finally {
       this.close(pstmt);
       this.closeConnection(this.getConnection());
+      throw new Exception("Filme não encontrado");
     }
     return movie;
   }

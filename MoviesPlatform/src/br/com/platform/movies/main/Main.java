@@ -32,6 +32,18 @@ public class Main {
 //      System.out.println(m.getDuration());
 //    }
 //
+
+//    MovieController mc = new MovieController();
+//    
+
+    // Atualizar filme
+//    try {
+//      mc.updateMovie(1, "edited", "Comédia", "Filme de comédia", 120, true, 12);
+//      System.out.println("Filme editado com sucesso");
+//    } catch (Exception ex) {
+//      System.out.println(ex.getMessage());
+//    }
+
 //    //Procurar filme pelo ID
 //    Movie m = null;
 //    try {
@@ -44,13 +56,13 @@ public class Main {
 //      System.out.println("&&&&&&&" + m.getName());
 //    }
 
-      PersonController pc = new PersonController(); 
-      Date birth = new Date(1997, 9, 18);
-      try {
-        pc.create("Elieudo Maia", "elieudo.maia@gmail.com", "123", "88998758585", "Em casa", birth);
-      } catch (Exception ex) {
-        System.out.println(ex.getMessage());
-      }
+//      PersonController pc = new PersonController(); 
+//      Date birth = new Date(1997, 9, 18);
+//      try {
+//        pc.create("Elieudo Maia", "elieudo.maia@gmail.com", "123", "88998758585", "Em casa", birth);
+//      } catch (Exception ex) {
+//        System.out.println(ex.getMessage());
+//      }
 
   }
 }
