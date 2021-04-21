@@ -1,6 +1,7 @@
 package br.com.platform.movies.main;
 
 import br.com.platform.movies.controller.MovieController;
+import br.com.platform.movies.controller.MoviePersonController;
 import br.com.platform.movies.controller.PersonController;
 import br.com.platform.movies.model.Movie;
 import br.com.platform.movies.view.Home;
@@ -15,10 +16,10 @@ import java.util.List;
  */
 public class Main {
   public static void main(String[] args) throws ParseException {
-//      System.out.println("Starting application ...");
-//      new Home().setVisible(true);
+      System.out.println("Starting application ...");
+      new Home().setVisible(true);
     
-    MovieController mc = new MovieController();
+//    MovieController mc = new MovieController();
 //    
 //    //criando filme
 //    mc.createMovie("Hora de dormir", "Humor", "Filme de humor", 130, true, 14);
@@ -64,5 +65,14 @@ public class Main {
 //        System.out.println(ex.getMessage());
 //      }
 
+//    MoviePersonController mpc = new MoviePersonController();
+//    
+//    // assitir filme
+//    try {
+//      mpc.setWatchedMovie(2, 1, 20);
+//    } catch (Exception e) {
+//      System.out.println(e.getMessage());
+//    }
+    
   }
 }
