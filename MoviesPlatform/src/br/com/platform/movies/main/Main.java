@@ -4,10 +4,13 @@ import br.com.platform.movies.controller.MovieController;
 import br.com.platform.movies.controller.MoviePersonController;
 import br.com.platform.movies.controller.PersonController;
 import br.com.platform.movies.model.Movie;
+import br.com.platform.movies.model.Person;
 import br.com.platform.movies.view.Home;
 import java.text.ParseException;
 import java.sql.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -80,5 +83,15 @@ public class Main {
 //        System.out.println(m.getDescription());
 //        System.out.println(m.getDuration());
 //      }
+
+//    PersonController pc = new PersonController();
+//    
+//    try {
+//      // pegar cliente pelo id
+//      Person p = pc.getById(1);
+//      System.out.println(p.getName());
+//    } catch (Exception ex) {
+//      System.out.println(ex.getMessage());
+//    }
   }
 }

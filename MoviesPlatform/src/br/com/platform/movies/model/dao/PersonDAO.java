@@ -22,8 +22,38 @@ public class PersonDAO extends InsertableOnDatabase{
     return new ArrayList<>();
   }
   
-  public Person getById(int id) {
-    return new Client();
+  public Person getById(int id) throws Exception {
+    PreparedStatement pstmt = null;
+    Person person;
+
+    try {
+      pstmt = this.getConnection().prepareStatement("select * from people where id = ?;");
+      pstmt.setInt(1, id);
+      
+      ResultSet result = pstmt.executeQuery();
+      
+      result.next();
+      
+      
+      if (result.getBoolean(7)) {
+        person = new Administrator();
+      } else {
+        person = new Client();
+      }
+      
+      person.setName(result.getString(2));
+      person.setEmail(result.getString(3));
+      person.setTelephone(result.getString(5));
+      person.setAddress(result.getString(6));
+      person.setBirthDate(result.getDate(8));
+      
+    } catch (SQLException e) {
+      this.close(pstmt);
+      this.closeConnection(this.getConnection());
+      throw new Exception("Filme não encontrado");
+    }
+    
+    return person;
   }
   
   public int createPerson(Person person, boolean isAdmin) throws Exception {

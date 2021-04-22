@@ -18,11 +18,12 @@ public class PersonController {
   }
   
   public void listAll() {
-      
+    
   }
   
-  public void getById() {
-      
+  public Person getById(int personId) throws Exception{
+    Person person = this.personDAO.getById(personId);
+    return person;
   }
   
   public void create(String name, String email, String password, String telephone, String address, Date birthDate) throws Exception {
@@ -40,7 +41,7 @@ public class PersonController {
   }
   
   public void update() {
-      
+    
   }
   
   public void delete() {
