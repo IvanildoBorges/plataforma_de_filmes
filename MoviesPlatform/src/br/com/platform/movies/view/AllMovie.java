@@ -21,7 +21,7 @@ public class AllMovie extends javax.swing.JFrame {
         this.movieController = new MovieController();
         this.movieList = new ArrayList<>();
         initComponents();
-        show();
+        showInfo();
     }
 
     /**
@@ -110,20 +110,19 @@ public class AllMovie extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
-//    //funcão para mostrar todos os filmes
-//    public void show() {
-//        movieList = this.movieController.listAll();
-//        String str = "";
-//        
-//        try {
-//            for (Object object : movieList) {
-//                str = object.toString();
-//                TextArea.setText(str);
-//            }
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e.getMessage());
-//        }
-//    }
+    //funcão para mostrar todos os filmes
+    public void showInfo() {
+        movieList = this.movieController.listAll("", "", 0);
+        
+        try {
+            for (Object object : movieList) {
+                String str = object.toString();
+                TextArea.setText(str);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
     
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         String movie = campoText.getText();

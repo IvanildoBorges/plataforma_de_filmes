@@ -38,6 +38,7 @@ public class Login extends javax.swing.JFrame {
         camporEmail = new javax.swing.JTextField();
         campoPassword = new javax.swing.JPasswordField();
         butaoLogin = new javax.swing.JButton();
+        butaoCancel = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -79,6 +80,17 @@ public class Login extends javax.swing.JFrame {
         jPanel1.add(butaoLogin);
         butaoLogin.setBounds(420, 270, 90, 33);
 
+        butaoCancel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        butaoCancel.setForeground(new java.awt.Color(137, 61, 140));
+        butaoCancel.setText("Cancelar");
+        butaoCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butaoCancelActionPerformed(evt);
+            }
+        });
+        jPanel1.add(butaoCancel);
+        butaoCancel.setBounds(290, 270, 90, 33);
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/Retângulo 1.jpg"))); // NOI18N
         jPanel1.add(background);
         background.setBounds(0, 0, 650, 390);
@@ -108,20 +120,25 @@ public class Login extends javax.swing.JFrame {
             System.out.println("personId" + personId);
             System.out.println("ação do botão");
 
-//                boolean adm = this.personController.checkIsAdmin(personId);
-//                if (adm) {
-//                    UserArea userArea = new UserArea();
-//                    userArea.personId = 2;
-//                    userArea.setVisible(true);
-//                } else {
-//                    MyAccount minhaConta = new MyAccount();
-//                    minhaConta.setVisible(true);
-//                }
+            boolean adm = this.personController.checkIsAdmin(personId);
+            if (adm) {
+                UserArea userArea = new UserArea();
+                userArea.personId = 2;
+                userArea.setVisible(true);
+            } else {
+                MyAccount minhaConta = new MyAccount();
+                minhaConta.setVisible(true);
+            }
             this.setVisible(false);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_butaoLoginActionPerformed
+
+    private void butaoCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butaoCancelActionPerformed
+        new Home().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_butaoCancelActionPerformed
 
   /**
    * @param args the command line arguments
@@ -162,6 +179,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Title;
     private javax.swing.JLabel background;
+    private javax.swing.JButton butaoCancel;
     private javax.swing.JButton butaoLogin;
     private javax.swing.JPasswordField campoPassword;
     private javax.swing.JTextField camporEmail;
