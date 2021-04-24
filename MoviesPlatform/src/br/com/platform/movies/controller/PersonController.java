@@ -4,6 +4,7 @@ import br.com.platform.movies.model.Administrator;
 import br.com.platform.movies.model.Person;
 import br.com.platform.movies.model.dao.PersonDAO;
 import java.sql.Date;
+import java.util.List;
 
 /**
  *
@@ -17,8 +18,8 @@ public class PersonController {
     this.personDAO = new PersonDAO();
   }
   
-  public void listAll() {
-    
+  public List<Person> listAll() {
+    return this.personDAO.listAll();
   }
   
   public Person getById(int personId) throws Exception{

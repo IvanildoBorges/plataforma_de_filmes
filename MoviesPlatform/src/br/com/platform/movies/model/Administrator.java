@@ -6,15 +6,5 @@ package br.com.platform.movies.model;
  * @author Ivanildo Borges
  */
 public class Administrator extends Person {
-  public void registerMovie() {
-    
-  }
   
-  public void updateMovieData() {
-    
-  }
-  
-  public void createUser() {
-    
-  }
 }

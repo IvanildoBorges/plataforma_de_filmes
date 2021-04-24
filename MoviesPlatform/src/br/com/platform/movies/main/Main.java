@@ -93,5 +93,13 @@ public class Main {
 //    } catch (Exception ex) {
 //      System.out.println(ex.getMessage());
 //    }
+
+//      try {
+//        List<Person> peopleList = pc.listAll();
+//        for (Person p : peopleList) {
+//          System.out.println("Nome: " + p.getName());
+//        }
+//      } catch (Exception e) {
+//      }
   }
 }

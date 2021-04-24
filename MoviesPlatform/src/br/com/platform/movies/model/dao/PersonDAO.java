@@ -19,7 +19,42 @@ import java.util.List;
  */
 public class PersonDAO extends InsertableOnDatabase{
   public List<Person> listAll() {
-    return new ArrayList<>();
+    PreparedStatement pstmt = null;
+    List peopleList = new ArrayList<>();
+    
+    try {
+      pstmt = this.getConnection().prepareStatement("select * from people;");
+      
+      ResultSet result = pstmt.executeQuery();
+      
+      while(result.next()) {
+        Person person;
+        
+        boolean isAdmin = result.getBoolean(7);
+        
+        if (isAdmin) {
+          person= new Administrator();
+        } else {
+          person = new Client();
+        }
+        
+        person.setName(result.getString(2));
+        person.setEmail(result.getString(3));
+        person.setTelephone(result.getString(5));
+        person.setAddress(result.getString(6));
+        person.setBirthDate(result.getDate(8));
+        
+        peopleList.add(person);
+      }
+      
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      this.close(pstmt);
+      this.closeConnection(this.getConnection());
+    }
+    
+    return peopleList;
   }
   
   public Person getById(int id) throws Exception {
