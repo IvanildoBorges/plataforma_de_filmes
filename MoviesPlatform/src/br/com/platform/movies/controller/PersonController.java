@@ -1,6 +1,7 @@
 package br.com.platform.movies.controller;
 
 import br.com.platform.movies.model.Administrator;
+import br.com.platform.movies.model.Client;
 import br.com.platform.movies.model.Person;
 import br.com.platform.movies.model.dao.PersonDAO;
 import java.sql.Date;
@@ -41,8 +42,19 @@ public class PersonController {
     this.personDAO.createPerson(client, true);
   }
   
-  public void update() {
+  public void update(int id, String name, String email, String password, String telephone, String address, boolean isAdmin, Date birthDate) {
+    Person person = new Client();
+    if (isAdmin) person = new Administrator();
     
+    person.setId(id);
+    person.setName(name);
+    person.setEmail(email);
+    person.setPassword(password);
+    person.setTelephone(telephone);
+    person.setAddress(address);
+    person.setBirthDate(birthDate);
+    
+    this.personDAO.updatePerson(person);
   }
   
   public void delete() {

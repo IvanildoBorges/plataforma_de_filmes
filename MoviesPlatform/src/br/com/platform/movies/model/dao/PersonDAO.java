@@ -38,6 +38,7 @@ public class PersonDAO extends InsertableOnDatabase{
           person = new Client();
         }
         
+        person.setId(result.getInt(1));
         person.setName(result.getString(2));
         person.setEmail(result.getString(3));
         person.setTelephone(result.getString(5));
@@ -76,6 +77,7 @@ public class PersonDAO extends InsertableOnDatabase{
         person = new Client();
       }
       
+      person.setId(result.getInt(1));
       person.setName(result.getString(2));
       person.setEmail(result.getString(3));
       person.setTelephone(result.getString(5));
@@ -115,12 +117,38 @@ public class PersonDAO extends InsertableOnDatabase{
     return ret;
   }
   
-  public boolean updatePerson() {
+  public boolean deletePerson() {
     return false;
   }
   
-  public boolean deletePerson() {
-    return false;
+  public int updatePerson(Person person) {
+    PreparedStatement pstmt = null;
+    int ret = 0;
+    boolean isAdmin = false;
+    
+    if (person instanceof Administrator) isAdmin = true; 
+    
+    try {
+      pstmt = this.getConnection().prepareStatement("update people set name=?, email=?, password=?, telephone=?, address=?, is_admin=?, birth_date=? where id = ?;");
+      pstmt.setString(1, person.getName());
+      pstmt.setString(2, person.getEmail());
+      pstmt.setString(3, person.getPassword());
+      pstmt.setString(4, person.getTelephone());
+      pstmt.setString(5, person.getAddress());
+      pstmt.setBoolean(6, isAdmin);
+      pstmt.setDate(7, person.getBirthDate());
+      pstmt.setInt(8, person.getId());
+
+      ret = pstmt.executeUpdate();
+    } catch (SQLException e) {
+      String errorMessage = "Erro ao atualizar cadastro de usuário";
+      System.out.println(errorMessage + e.getMessage());
+    } finally {
+      // this.close(pstmt);
+      //this.closeConnection(this.getConnection());
+    }
+    
+    return ret;
   }
   
   public Person login(String user, String password) throws Exception {

@@ -91,6 +91,7 @@ public class MovieDAO extends InsertableOnDatabase {
       while(result.next()) {
         Movie movie = new Movie();
         
+        movie.setId(result.getInt(1));
         movie.setName(result.getString(2));
         movie.setGenre(result.getString(3));
         movie.setDescription(result.getString(4));
@@ -122,6 +123,7 @@ public class MovieDAO extends InsertableOnDatabase {
       
       result.next();
       
+      movie.setId(result.getInt(1));
       movie.setName(result.getString(2));
       movie.setGenre(result.getString(3));
       movie.setDescription(result.getString(4));

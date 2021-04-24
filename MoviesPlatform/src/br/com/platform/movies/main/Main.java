@@ -8,6 +8,8 @@ import br.com.platform.movies.model.Person;
 import br.com.platform.movies.view.Home;
 import java.text.ParseException;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,8 +21,8 @@ import java.util.logging.Logger;
  */
 public class Main {
   public static void main(String[] args) throws ParseException {
-      System.out.println("Starting application ...");
-      new Home().setVisible(true);
+//      System.out.println("Starting application ...");
+//      new Home().setVisible(true);
     
 //    MovieController mc = new MovieController();
 //    
@@ -101,5 +103,13 @@ public class Main {
 //        }
 //      } catch (Exception e) {
 //      }
+
+//     try {
+//      Calendar cal = Calendar.getInstance();
+//      cal.set(1997, Calendar.OCTOBER, 18);
+//      pc.update(15, "meu cadastro editado", "test@test.com", "321", "12345687", "casa", false, new Date(cal.getTimeInMillis()));
+//    } catch (Exception e) {
+//       System.out.println(e.getMessage());
+//    }
   }
 }

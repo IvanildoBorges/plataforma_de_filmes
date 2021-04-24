@@ -6,6 +6,7 @@ package br.com.platform.movies.model;
  * @author Ivanildo Borges
  */
 public class Movie {
+  private int id;
   private String name;
   private String genre;
   private String description;
@@ -22,6 +23,14 @@ public class Movie {
     this.duration = duration;
     this.isAvaiable = isAvailable;
     this.ageRange = ageRange;
+  }
+  
+  public int getId() {
+    return this.id;
+  }
+  
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getName() {
