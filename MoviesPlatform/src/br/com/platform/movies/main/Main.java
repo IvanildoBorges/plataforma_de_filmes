@@ -21,8 +21,8 @@ import java.util.logging.Logger;
  */
 public class Main {
   public static void main(String[] args) throws ParseException {
-//      System.out.println("Starting application ...");
-//      new Home().setVisible(true);
+      System.out.println("Starting application ...");
+      new Home().setVisible(true);
     
 //    MovieController mc = new MovieController();
 //    
@@ -110,6 +110,12 @@ public class Main {
 //      pc.update(15, "meu cadastro editado", "test@test.com", "321", "12345687", "casa", false, new Date(cal.getTimeInMillis()));
 //    } catch (Exception e) {
 //       System.out.println(e.getMessage());
+//    }
+
+//    try {
+//      pc.delete(3);
+//    } catch (Exception e) {
+////      System.out.println(e.getMessage());
 //    }
   }
 }

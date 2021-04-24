@@ -117,8 +117,15 @@ public class PersonDAO extends InsertableOnDatabase{
     return ret;
   }
   
-  public boolean deletePerson() {
-    return false;
+  public boolean deletePerson(int personId) throws Exception {
+    PreparedStatement pstmt = null;
+    
+    pstmt = this.getConnection().prepareStatement("delete from people where id=?;");
+    pstmt.setInt(1, personId);
+
+    pstmt.executeQuery();
+
+    return true;
   }
   
   public int updatePerson(Person person) {

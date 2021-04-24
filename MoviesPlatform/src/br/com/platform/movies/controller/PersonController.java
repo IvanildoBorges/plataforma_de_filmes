@@ -57,8 +57,8 @@ public class PersonController {
     this.personDAO.updatePerson(person);
   }
   
-  public void delete() {
-      
+  public void delete(int personId) throws Exception {
+    this.personDAO.deletePerson(personId);
   }
   
   public int login(String email, String password) throws Exception {
