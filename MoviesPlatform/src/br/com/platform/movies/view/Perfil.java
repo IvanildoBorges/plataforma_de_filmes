@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.platform.movies.view;
 
 /**
  *
- * @author ivani
+ * @author Elieudo Maia
+ * @author Ivanildo Borges
  */
 public class Perfil extends javax.swing.JFrame {
 
@@ -16,8 +12,15 @@ public class Perfil extends javax.swing.JFrame {
      */
     public Perfil() {
         initComponents();
+        showInfo();
     }
 
+    //pegar o ID da pessoa na Classe
+    public void showInfo() {
+        
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,7 +109,7 @@ public class Perfil extends javax.swing.JFrame {
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         //
     }//GEN-LAST:event_exitActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */

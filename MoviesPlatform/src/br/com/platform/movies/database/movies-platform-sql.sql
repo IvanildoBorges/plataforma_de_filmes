@@ -4,7 +4,7 @@ create table movies (
   id serial primary key,
   name varchar(400) not null unique,
   genre varchar(20) not null,
-  description varchar(500) not null,
+  description varchar(1000) not null,
   duration_in_minutes int not null,
   is_available boolean not null default true,
   age_range int not null
