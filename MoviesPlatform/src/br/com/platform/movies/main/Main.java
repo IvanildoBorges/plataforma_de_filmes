@@ -3,6 +3,7 @@ package br.com.platform.movies.main;
 import br.com.platform.movies.controller.MovieController;
 import br.com.platform.movies.controller.MoviePersonController;
 import br.com.platform.movies.controller.PersonController;
+import br.com.platform.movies.dto.PersonalStatisticsDTO;
 import br.com.platform.movies.model.Movie;
 import br.com.platform.movies.model.Person;
 import br.com.platform.movies.view.Home;
@@ -85,6 +86,24 @@ public class Main {
 //        System.out.println(m.getDescription());
 //        System.out.println(m.getDuration());
 //      }
+
+//  estatísticas do usuário
+//    try {
+//      PersonalStatisticsDTO mapa = mpc.getPersonalStatistics(1);
+//      System.out.println("Total de minutos assistidos pelo usuário " + mapa.getTotalMinutesWatchedByUser());
+//      
+//      System.out.println("Média de minutos assistidos por todos os usuários " + mapa.getOverallAverage());
+//      
+//      System.out.println("Média de minutos assistidos pelo usuário atual " + mapa.getUserAverage());
+//      
+//      System.out.println("Total por genero:");
+//      // fazer os passos a seguir para todos os gêneros
+//      System.out.println("Pegando pela chave Comédia " + mapa.getMapTotalByGenre().get("Comédia"));
+//      System.out.println("Pegando pela chave Humor " + mapa.getMapTotalByGenre().get("Humor"));
+//      
+//    } catch (Exception e) {
+//      System.out.println(e.getMessage());
+//    }
 
 //    PersonController pc = new PersonController();
 //    

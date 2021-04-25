@@ -1,5 +1,6 @@
 package br.com.platform.movies.model.dao;
 
+import br.com.platform.movies.dto.PersonalStatisticsDTO;
 import br.com.platform.movies.model.Movie;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -85,6 +88,72 @@ public class MoviePersonDAO extends InsertableOnDatabase{
       this.closeConnection(this.getConnection());
     }
     return movieslist;
+  }
+  
+  public int getWatchedTimeByUser(int userId) throws Exception {
+    int totalMinutesWatched = 0;
+    PreparedStatement pstmt = null;
+    String sql = "select minutes_watched from people_movies where person_id=?;";
+    
+    pstmt = this.getConnection().prepareStatement(sql);
+    pstmt.setInt(1, userId);
+    ResultSet result = pstmt.executeQuery();
+    
+    while(result.next()) {
+      totalMinutesWatched += result.getInt(1);
+    }
+    
+    return totalMinutesWatched;
+  }
+  
+  public Map getTotalWatchedGroupedByGenre(int userId) throws Exception{
+    PreparedStatement pstmt = null;
+    String sql = "select m.genre, count(*) as quantity from movies m inner join people_movies pm on m.id = pm.movie_id and pm.person_id=? group by genre;";
+    
+    pstmt = this.getConnection().prepareStatement(sql);
+    pstmt.setInt(1, userId);
+    ResultSet result = pstmt.executeQuery();
+    
+    Map genreMap = new HashMap<>();
+    
+    while(result.next()) {
+      String genreName = result.getString(1);
+      int total = result.getInt(2);
+      genreMap.put(genreName, total);
+    }
+    
+    return genreMap;
+  }
+  
+  public float getTotalMinutesWatchedAverage() throws Exception {
+    float totalMinutesWatched = 0;
+    PreparedStatement pstmt = null;
+    String sql = "select avg(minutes_watched) from people_movies;";
+    
+    pstmt = this.getConnection().prepareStatement(sql);
+    ResultSet result = pstmt.executeQuery();
+    
+    if (result.next()) {
+      totalMinutesWatched = result.getFloat(1);
+    }
+    
+    return totalMinutesWatched;
+  }
+  
+  public float getTotalMinutesWatchedByUserAverage(int userId) throws Exception {
+    float totalMinutesWatched = 0;
+    PreparedStatement pstmt = null;
+    String sql = "select avg(minutes_watched) from people_movies where person_id=?;";
+    
+    pstmt = this.getConnection().prepareStatement(sql);
+    pstmt.setInt(1, userId);
+    ResultSet result = pstmt.executeQuery();
+    
+    if (result.next()) {
+      totalMinutesWatched = result.getFloat(1);
+    }
+    
+    return totalMinutesWatched;
   }
   
   void close (Statement stmt) {
