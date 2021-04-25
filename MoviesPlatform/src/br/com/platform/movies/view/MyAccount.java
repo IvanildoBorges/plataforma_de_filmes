@@ -4,6 +4,9 @@ import br.com.platform.movies.controller.MoviePersonController;
 import br.com.platform.movies.model.Movie;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -206,7 +209,8 @@ public class MyAccount extends javax.swing.JFrame {
         int linha;
         List<Movie> movielist = this.moviepersoncontroller.getWatchedFilms(idpessoa);
         
-        try {
+        
+        try {      
 //            for (Movie movie : movielist) {
 //                for (linha=0; linha<6; linha++) {
 //                    int id = (int) tabela.getValueAt(linha, 0);
@@ -226,7 +230,7 @@ public class MyAccount extends javax.swing.JFrame {
 //            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-        }
+        }    
     }
     
     private void estatisticsNerdsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estatisticsNerdsActionPerformed

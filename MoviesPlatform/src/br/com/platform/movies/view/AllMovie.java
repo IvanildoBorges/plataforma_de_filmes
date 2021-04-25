@@ -2,9 +2,10 @@ package br.com.platform.movies.view;
 
 import br.com.platform.movies.controller.MovieController;
 import br.com.platform.movies.model.Movie;
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -36,7 +37,7 @@ public class AllMovie extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        genre = new javax.swing.JComboBox<>();
+        caixaCombin = new javax.swing.JComboBox<>();
         campoText = new javax.swing.JTextField();
         search = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -80,15 +81,15 @@ public class AllMovie extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(110, 500, 70, 20);
 
-        genre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        genre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome do filme", "Gênero", "Faixa Etária" }));
-        genre.addActionListener(new java.awt.event.ActionListener() {
+        caixaCombin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        caixaCombin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome do filme", "Gênero", "Faixa Etária" }));
+        caixaCombin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                genreActionPerformed(evt);
+                caixaCombinActionPerformed(evt);
             }
         });
-        getContentPane().add(genre);
-        genre.setBounds(170, 500, 120, 26);
+        getContentPane().add(caixaCombin);
+        caixaCombin.setBounds(170, 500, 120, 26);
 
         campoText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         campoText.setForeground(new java.awt.Color(51, 51, 51));
@@ -113,26 +114,26 @@ public class AllMovie extends javax.swing.JFrame {
         jLabel4.setBounds(110, 170, 340, 30);
 
         tabela.setAutoCreateRowSorter(true);
-        tabela.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tabela.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nome", "Gênero", "Descrição", "Duração", "Assistir"
+                "Id", "Nome", "Gênero", "Descrição", "Duração", "Faixa Etária", "Dísponibilidade"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -146,6 +147,19 @@ public class AllMovie extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tabela);
+        if (tabela.getColumnModel().getColumnCount() > 0) {
+            tabela.getColumnModel().getColumn(0).setResizable(false);
+            tabela.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tabela.getColumnModel().getColumn(1).setPreferredWidth(250);
+            tabela.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tabela.getColumnModel().getColumn(3).setPreferredWidth(250);
+            tabela.getColumnModel().getColumn(4).setResizable(false);
+            tabela.getColumnModel().getColumn(4).setPreferredWidth(80);
+            tabela.getColumnModel().getColumn(5).setResizable(false);
+            tabela.getColumnModel().getColumn(5).setPreferredWidth(100);
+            tabela.getColumnModel().getColumn(6).setResizable(false);
+            tabela.getColumnModel().getColumn(6).setPreferredWidth(130);
+        }
 
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(110, 200, 720, 230);
@@ -166,46 +180,91 @@ public class AllMovie extends javax.swing.JFrame {
     
     //funcão para mostrar todos os filmes
     public void showInfo() {
-        int linha;
+        int linha = 0;
         List<Movie> movieList = this.movieController.listAll("", "", 0);
+        DefaultTableModel modelo;
+        String valor = "";
         
         try {
-//            for (Movie movie : movieList) {
-//                for (linha=0; linha<6; linha++) {
-//                    int id = (int) tabela.getValueAt(linha, 0);
-//                    String nome = (String) tabela.getValueAt(linha, 1);
-//                    String genero = (String) tabela.getValueAt(linha, 2);
-//                    String descricao = (String) tabela.getValueAt(linha, 3);
-//                    int duracao = (int) tabela.getValueAt(linha, 4);
-//                    int faixa = (int) tabela.getValueAt(linha, 5);
-//
-//                    tabela.setValueAt(movie.getId()+id, linha, 0);
-//                    tabela.setValueAt(movie.getName()+nome, linha, 0);
-//                    tabela.setValueAt(movie.getGenre()+genero, linha, 0);
-//                    tabela.setValueAt(movie.getDescription()+descricao, linha, 0);
-//                    tabela.setValueAt(movie.getDuration()+duracao, linha, 0);
-//                    tabela.setValueAt(movie.getAgeRange()+faixa, linha, 0);
-//                }
-//            }
+            modelo = (DefaultTableModel) tabela.getModel();
+            modelo.setNumRows(0);
+            
+            while (linha < movieList.size()) {
+             
+                //Salva uma mensagem para disponibilidade do filme    
+                if (movieList.get(linha).isIsAvaiable()) {
+                    valor = "Diponível";
+                } else {
+                    valor = "Indiponível";
+                }
+                
+                //Cria um objeto e adiciona numa linha da tabela
+                //Cada linha é composta de colunas com os seguintes valores da
+                //lista de filmes (movieList):
+                modelo.addRow(new Object[]{
+                    movieList.get(linha).getId(),
+                    movieList.get(linha).getName(),
+                    movieList.get(linha).getGenre(),
+                    movieList.get(linha).getDescription(),
+                    movieList.get(linha).getDuration(),
+                    movieList.get(linha).getAgeRange(),
+                    valor,
+                    linha++
+                });
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
     
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-        String movie = campoText.getText();
+        String nome = campoText.getText();
+        DefaultTableModel modelo;
+        int linha = 0;
+        String valor;
         
-//        try {
-//            //comparar se exite nome do filme e mostrar a tela findNameMovie
-//            if (movie == "") {
-//                
-//            } else {
-//                
-//            }
-//            
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e.getMessage());
-//        }
+        try {  
+            modelo = (DefaultTableModel) tabela.getModel();
+            modelo.setNumRows(0);
+            String selectBox = (String) caixaCombin.getSelectedItem();
+            
+            System.out.println(selectBox);
+            System.out.println(nome);
+            
+            //comparar se exite nome, faixa etaria ou genenro do filme e mostrar os dados na tabela
+            if ((selectBox == "Nome do filme") && (!nome.equals(""))) {
+                List<Movie> nameMovie = this.movieController.listAll(nome, "", 0);
+                
+                while (linha < nameMovie.size()) {
+                    if (nameMovie.get(linha).isIsAvaiable()) {
+                        valor = "Diponível";
+                    } else {
+                        valor = "Indiponível";
+                    }
+
+                    modelo.addRow(new Object[]{
+                        nameMovie.get(linha).getId(),
+                        nameMovie.get(linha).getName(),
+                        nameMovie.get(linha).getGenre(),
+                        nameMovie.get(linha).getDescription(),
+                        nameMovie.get(linha).getDuration(),
+                        nameMovie.get(linha).getAgeRange(),
+                        valor,
+                        linha++
+                    });
+                } 
+            } else if (selectBox.equals("Gênero") && !nome.equals("")) {
+                //List<Movie> genreMovie = this.movieController.listAll("", nome, 0);
+                
+            } else if (selectBox.equals("Faixa Etária") && !nome.equals("")) {
+                //int num = Integer.parseInt(nome);
+                //List<Movie> faixaEtMovie = this.movieController.listAll("", "", num);
+            } else {
+                showInfo();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_searchActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -213,19 +272,26 @@ public class AllMovie extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void genreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genreActionPerformed
+    private void caixaCombinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caixaCombinActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_genreActionPerformed
+    }//GEN-LAST:event_caixaCombinActionPerformed
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
         
-        
+//        //Mostra a tela Watch para o filme selecionado, passando o Id do filme
 //        try {
 //            int linha = tabela.getSelectedRow();
-//            int coluna = tabela.getSelectedColumn();
-//            String valor = String.valueOf(tabela.getValueAt(linha, coluna));
+////            int coluna = tabela.getSelectedColumn();
+//            int colunaAux = 0;
+//            int identificador;
 //            
-//            //new Watch().setVisible(true);
+//            identificador = (int) tabela.getValueAt(linha, colunaAux);
+//            System.out.println(identificador);
+//            
+//            Watch assistir = new Watch();
+//            assistir.setId(identificador);
+//            assistir.setVisible(true);
+//            this.setVisible(false);
 //        } catch (Exception e) {
 //            JOptionPane.showMessageDialog(null, e);
 //        }
@@ -269,8 +335,8 @@ public class AllMovie extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Logo;
     private javax.swing.JLabel backGround;
+    private javax.swing.JComboBox<String> caixaCombin;
     private javax.swing.JTextField campoText;
-    private javax.swing.JComboBox<String> genre;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

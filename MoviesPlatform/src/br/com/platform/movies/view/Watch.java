@@ -9,11 +9,18 @@ import javax.swing.JOptionPane;
  */
 public class Watch extends javax.swing.JFrame {
 
+    private int id;
+
     /**
      * Creates new form Watch
      */
     public Watch() {
         initComponents();
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+        System.out.println("\n" + "ID recebido:" +id);
     }
 
     /**
