@@ -289,24 +289,26 @@ public class AllMovie extends javax.swing.JFrame {
     }//GEN-LAST:event_caixaCombinActionPerformed
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
-        
-//        //Mostra a tela Watch para o filme selecionado, passando o Id do filme
-//        try {
-//            int linha = tabela.getSelectedRow();
-////            int coluna = tabela.getSelectedColumn();
-//            int colunaAux = 0;
-//            int identificador;
-//            
-//            identificador = (int) tabela.getValueAt(linha, colunaAux);
-//            System.out.println(identificador);
-//            
-//            Watch assistir = new Watch();
-//            assistir.setId(identificador);
-//            assistir.setVisible(true);
-//            this.setVisible(false);
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e);
-//        }
+
+        try {
+            int linha = tabela.getSelectedRow();
+//            int coluna = tabela.getSelectedColumn();
+            int colunaAux = 0;
+            int identificador;
+            
+            System.out.println("LINHA: " + linha);
+            System.out.println("COLUNA: " + colunaAux);
+            
+            identificador = (int) tabela.getValueAt(linha, colunaAux);
+            System.out.println("ID do Filme " + identificador);
+            
+            Watch assistir = new Watch();
+            assistir.setId(identificador);
+            assistir.setVisible(true);
+            this.setVisible(false);
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
     }//GEN-LAST:event_tabelaMouseClicked
 
   private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

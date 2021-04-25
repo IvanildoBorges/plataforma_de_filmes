@@ -105,8 +105,8 @@ public class MovieDAO extends InsertableOnDatabase {
     } catch (SQLException e) {
       e.printStackTrace();
     } finally {
-      this.close(pstmt);
-      this.closeConnection(this.getConnection());
+//      this.close(pstmt);
+//      this.closeConnection(this.getConnection());
     }
     return movieslist;
   }

@@ -1,5 +1,7 @@
 package br.com.platform.movies.view;
 
+import br.com.platform.movies.controller.MovieController;
+import br.com.platform.movies.model.Movie;
 import javax.swing.JOptionPane;
 
 /**
@@ -8,7 +10,7 @@ import javax.swing.JOptionPane;
  * @author Ivanildo Borges
  */
 public class Watch extends javax.swing.JFrame {
-
+    private MovieController movieController = new MovieController();
     private int id;
 
     /**
@@ -16,11 +18,23 @@ public class Watch extends javax.swing.JFrame {
      */
     public Watch() {
         initComponents();
+        this.getMovie();
     }
     
     public void setId(int id) {
         this.id = id;
         System.out.println("\n" + "ID recebido:" +id);
+    }
+    
+    private void getMovie() {
+      System.out.println("chamou a função que pega o filme");
+      try {
+        Movie movie = this.movieController.findById(this.id);
+        System.out.println(movie.getName());
+      } catch (Exception e) {
+        System.out.println("Erro ao buscar informações do filme");
+      }
+      
     }
 
     /**
