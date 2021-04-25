@@ -89,6 +89,14 @@ public class Main {
 //    PersonController pc = new PersonController();
 //    
 //    try {
+//      Calendar cal = Calendar.getInstance();
+//      cal.set(1987, Calendar.DECEMBER, 20);
+//      pc.create("Calos", "carlos@gmail.com", "123", "895959595", "Cidade A", true, new Date(cal.getTimeInMillis()));
+//    } catch (Exception e) {
+//      System.out.println(e.getMessage());
+//    }
+//    
+//    try {
 //      // pegar cliente pelo id
 //      Person p = pc.getById(1);
 //      System.out.println(p.getName());

@@ -28,18 +28,18 @@ public class PersonController {
     return person;
   }
   
-  public void create(String name, String email, String password, String telephone, String address, Date birthDate) throws Exception {
-    // TODO - Verificar se quem quer criar o usuário tem permissão de Admin
+  public void create(String name, String email, String password, String telephone, String address, boolean isAdmin, Date birthDate) throws Exception {
+    Person person = new Client();
+    if (isAdmin) person = new Administrator();
     
-    Person client = new Administrator();
-    client.setName(name);
-    client.setEmail(email);
-    client.setPassword(password);
-    client.setTelephone(telephone);
-    client.setAddress(address);
-    client.setBirthDate(birthDate);
+    person.setName(name);
+    person.setEmail(email);
+    person.setPassword(password);
+    person.setTelephone(telephone);
+    person.setAddress(address);
+    person.setBirthDate(birthDate);
     
-    this.personDAO.createPerson(client, true);
+    this.personDAO.createPerson(person, isAdmin);
   }
   
   public void update(int id, String name, String email, String password, String telephone, String address, boolean isAdmin, Date birthDate) {
