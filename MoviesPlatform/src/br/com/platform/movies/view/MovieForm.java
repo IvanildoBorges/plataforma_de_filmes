@@ -170,7 +170,7 @@ public class MovieForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
   private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-    new UserArea().setVisible(true);
+    new UpdateMovie().setVisible(true);
     this.setVisible(false);
   }//GEN-LAST:event_cancelActionPerformed
 
@@ -187,7 +187,7 @@ public class MovieForm extends javax.swing.JFrame {
       
       JOptionPane.showMessageDialog(null, "Filme cadastrado com sucesso");
       
-      new UserArea().setVisible(true);
+      new UpdateMovie().setVisible(true);
       this.setVisible(false);
     } catch (Exception e) {
       JOptionPane.showMessageDialog(null, e.getMessage());

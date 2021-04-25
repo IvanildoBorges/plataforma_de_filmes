@@ -146,7 +146,7 @@ public class UserForm extends javax.swing.JFrame {
       }
     });
     jPanel1.add(btnCancel);
-    btnCancel.setBounds(300, 360, 120, 33);
+    btnCancel.setBounds(360, 360, 120, 33);
 
     btnConfirm.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
     btnConfirm.setForeground(new java.awt.Color(137, 61, 140));
@@ -157,7 +157,7 @@ public class UserForm extends javax.swing.JFrame {
       }
     });
     jPanel1.add(btnConfirm);
-    btnConfirm.setBounds(460, 360, 117, 33);
+    btnConfirm.setBounds(500, 360, 117, 33);
 
     try {
       birthDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -194,7 +194,7 @@ public class UserForm extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-    new UserArea().setVisible(true);
+    new UserList().setVisible(true);
     this.setVisible(false);
   }//GEN-LAST:event_btnCancelActionPerformed
 
@@ -223,7 +223,7 @@ public class UserForm extends javax.swing.JFrame {
       // MOCKss
       this.personController.create(name, email, new String(password), phone, address, isAdmin, date);
       JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso");
-      new UserArea().setVisible(true);
+      new UserList().setVisible(true);
       this.setVisible(false);
     } catch (Exception ex) {
       JOptionPane.showMessageDialog(null, ex.getMessage());
