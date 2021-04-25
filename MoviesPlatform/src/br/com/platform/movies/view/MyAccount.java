@@ -1,5 +1,8 @@
 package br.com.platform.movies.view;
 
+import br.com.platform.movies.controller.MoviePersonController;
+import br.com.platform.movies.model.Movie;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -8,12 +11,16 @@ import javax.swing.JOptionPane;
  * @author Elieudo Maia
  */
 public class MyAccount extends javax.swing.JFrame {
+    private MoviePersonController moviepersoncontroller;
+    int idpessoa;
 
     /**
      * Creates new form ClientArea
      */
     public MyAccount() {
+        this.moviepersoncontroller = new MoviePersonController();
         initComponents();
+        showInfo();
     }
 
     /**
@@ -28,12 +35,13 @@ public class MyAccount extends javax.swing.JFrame {
         Logo = new javax.swing.JLabel();
         perfil = new javax.swing.JButton();
         estatisticsNerds = new javax.swing.JButton();
-        watchedMovies = new javax.swing.JButton();
         allMovies = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         campoText = new javax.swing.JTextField();
         search = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabela = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         lanc1 = new javax.swing.JButton();
         lanc2 = new javax.swing.JButton();
@@ -61,7 +69,7 @@ public class MyAccount extends javax.swing.JFrame {
         getContentPane().add(perfil);
         perfil.setBounds(840, 10, 90, 90);
 
-        estatisticsNerds.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        estatisticsNerds.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         estatisticsNerds.setForeground(new java.awt.Color(137, 61, 140));
         estatisticsNerds.setText("Estatisticas para nerds");
         estatisticsNerds.addActionListener(new java.awt.event.ActionListener() {
@@ -70,20 +78,9 @@ public class MyAccount extends javax.swing.JFrame {
             }
         });
         getContentPane().add(estatisticsNerds);
-        estatisticsNerds.setBounds(490, 100, 180, 40);
+        estatisticsNerds.setBounds(280, 90, 170, 30);
 
-        watchedMovies.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        watchedMovies.setForeground(new java.awt.Color(137, 61, 140));
-        watchedMovies.setText("Filmes Assistidos");
-        watchedMovies.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                watchedMoviesActionPerformed(evt);
-            }
-        });
-        getContentPane().add(watchedMovies);
-        watchedMovies.setBounds(330, 100, 150, 40);
-
-        allMovies.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        allMovies.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         allMovies.setForeground(new java.awt.Color(137, 61, 140));
         allMovies.setText("Todos os Filmes");
         allMovies.addActionListener(new java.awt.event.ActionListener() {
@@ -92,24 +89,18 @@ public class MyAccount extends javax.swing.JFrame {
             }
         });
         getContentPane().add(allMovies);
-        allMovies.setBounds(180, 100, 140, 40);
+        allMovies.setBounds(130, 90, 133, 30);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Informe o nome do filme, gênero ou faixa etária do filme que");
+        jLabel3.setText("Informe o nome do filme, gênero ou faixa etária do filme que deseja assistir:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(170, 260, 590, 40);
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("deseja assistir:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(170, 290, 150, 30);
+        jLabel3.setBounds(130, 180, 590, 40);
 
         campoText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         campoText.setForeground(new java.awt.Color(51, 51, 51));
         getContentPane().add(campoText);
-        campoText.setBounds(170, 330, 400, 26);
+        campoText.setBounds(130, 220, 410, 26);
 
         search.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         search.setForeground(new java.awt.Color(137, 61, 140));
@@ -120,28 +111,88 @@ public class MyAccount extends javax.swing.JFrame {
             }
         });
         getContentPane().add(search);
-        search.setBounds(570, 330, 170, 30);
+        search.setBounds(550, 220, 170, 30);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(130, 19, 138));
+        jLabel4.setText("Lista de filmes assistidos");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(340, 290, 300, 30);
+
+        tabela.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Nome do filme", "Gênero", "Descrição", "Duração", "Faixa etária"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabela.setRowHeight(20);
+        tabela.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabela);
+        if (tabela.getColumnModel().getColumnCount() > 0) {
+            tabela.getColumnModel().getColumn(0).setResizable(false);
+            tabela.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tabela.getColumnModel().getColumn(1).setResizable(false);
+            tabela.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tabela.getColumnModel().getColumn(2).setResizable(false);
+            tabela.getColumnModel().getColumn(2).setPreferredWidth(130);
+            tabela.getColumnModel().getColumn(3).setResizable(false);
+            tabela.getColumnModel().getColumn(3).setPreferredWidth(250);
+            tabela.getColumnModel().getColumn(4).setResizable(false);
+            tabela.getColumnModel().getColumn(4).setPreferredWidth(100);
+            tabela.getColumnModel().getColumn(5).setResizable(false);
+            tabela.getColumnModel().getColumn(5).setPreferredWidth(100);
+        }
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(130, 330, 700, 130);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("LANÇAMENTOS");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(170, 460, 150, 30);
+        jLabel2.setBounds(130, 490, 150, 30);
 
         lanc1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         lanc1.setText("Lançamento 1");
         getContentPane().add(lanc1);
-        lanc1.setBounds(170, 490, 200, 40);
+        lanc1.setBounds(130, 520, 160, 30);
 
         lanc2.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         lanc2.setText("Lançamento 2");
         getContentPane().add(lanc2);
-        lanc2.setBounds(380, 490, 200, 40);
+        lanc2.setBounds(390, 520, 160, 30);
 
         lanc3.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         lanc3.setText("Lançamento 3");
         getContentPane().add(lanc3);
-        lanc3.setBounds(590, 490, 200, 40);
+        lanc3.setBounds(670, 520, 160, 30);
 
         backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/Retângulo 1.jpg"))); // NOI18N
         getContentPane().add(backGround);
@@ -151,6 +202,33 @@ public class MyAccount extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void showInfo() {
+        int linha;
+        List<Movie> movielist = this.moviepersoncontroller.getWatchedFilms(idpessoa);
+        
+        try {
+//            for (Movie movie : movielist) {
+//                for (linha=0; linha<6; linha++) {
+//                    int id = (int) tabela.getValueAt(linha, 0);
+//                    String nome = (String) tabela.getValueAt(linha, 1);
+//                    String genero = (String) tabela.getValueAt(linha, 2);
+//                    String descricao = (String) tabela.getValueAt(linha, 3);
+//                    int duracao = (int) tabela.getValueAt(linha, 4);
+//                    int faixa = (int) tabela.getValueAt(linha, 5);
+//
+//                    tabela.setValueAt(movie.getId()+id, linha, 0);
+//                    tabela.setValueAt(movie.getName()+nome, linha, 0);
+//                    tabela.setValueAt(movie.getGenre()+genero, linha, 0);
+//                    tabela.setValueAt(movie.getDescription()+descricao, linha, 0);
+//                    tabela.setValueAt(movie.getDuration()+duracao, linha, 0);
+//                    tabela.setValueAt(movie.getAgeRange()+faixa, linha, 0);
+//                }
+//            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
     private void estatisticsNerdsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estatisticsNerdsActionPerformed
         new EstatisticsNerds().setVisible(true);
         this.setVisible(false);
@@ -158,6 +236,7 @@ public class MyAccount extends javax.swing.JFrame {
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         String valor = campoText.getText();
+        int aux = Integer.parseInt(valor);
         
         try {
             
@@ -175,11 +254,6 @@ public class MyAccount extends javax.swing.JFrame {
         new AllMovie().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_allMoviesActionPerformed
-
-    private void watchedMoviesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_watchedMoviesActionPerformed
-        new WatchedMovies().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_watchedMoviesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,11 +300,12 @@ public class MyAccount extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton lanc1;
     private javax.swing.JButton lanc2;
     private javax.swing.JButton lanc3;
     private javax.swing.JButton perfil;
     private javax.swing.JButton search;
-    private javax.swing.JButton watchedMovies;
+    private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }

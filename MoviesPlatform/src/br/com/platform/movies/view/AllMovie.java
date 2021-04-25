@@ -1,6 +1,7 @@
 package br.com.platform.movies.view;
 
 import br.com.platform.movies.controller.MovieController;
+import br.com.platform.movies.model.Movie;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -12,14 +13,12 @@ import javax.swing.JOptionPane;
  */
 public class AllMovie extends javax.swing.JFrame {
     private MovieController movieController;
-    private List movieList;
 
     /**
      * Creates new form AllMovie
      */
-    public AllMovie() {
+    public AllMovie() {  
         this.movieController = new MovieController();
-        this.movieList = new ArrayList<>();
         initComponents();
         showInfo();
     }
@@ -36,10 +35,13 @@ public class AllMovie extends javax.swing.JFrame {
         Logo = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TextArea = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        genre = new javax.swing.JComboBox<>();
         campoText = new javax.swing.JTextField();
         search = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabela = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         backGround = new javax.swing.JLabel();
 
@@ -70,20 +72,28 @@ public class AllMovie extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(130, 19, 138));
         jLabel1.setText("Todos os Filmes");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(340, 120, 280, 40);
+        jLabel1.setBounds(340, 100, 280, 40);
 
-        TextArea.setEditable(false);
-        TextArea.setColumns(20);
-        TextArea.setRows(5);
-        jScrollPane1.setViewportView(TextArea);
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Filtros:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(110, 500, 70, 20);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(210, 170, 540, 160);
+        genre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        genre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome do filme", "Gênero", "Faixa Etária" }));
+        genre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(genre);
+        genre.setBounds(170, 500, 120, 26);
 
         campoText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         campoText.setForeground(new java.awt.Color(51, 51, 51));
         getContentPane().add(campoText);
-        campoText.setBounds(210, 410, 400, 26);
+        campoText.setBounds(110, 470, 550, 26);
 
         search.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         search.setForeground(new java.awt.Color(137, 61, 140));
@@ -94,13 +104,57 @@ public class AllMovie extends javax.swing.JFrame {
             }
         });
         getContentPane().add(search);
-        search.setBounds(620, 410, 160, 30);
+        search.setBounds(670, 470, 160, 30);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Clique na linha do filme que deseja assistir");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(110, 170, 340, 30);
+
+        tabela.setAutoCreateRowSorter(true);
+        tabela.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Id", "Nome", "Gênero", "Descrição", "Duração", "Assistir"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabela.setRowHeight(20);
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tabela);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(110, 200, 720, 230);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Qual dos filmes acima você deseja assistir?");
+        jLabel3.setText("Deseja filtrar um filme, gênero ou faixa etária :");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(210, 370, 430, 40);
+        jLabel3.setBounds(110, 440, 390, 30);
 
         backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/Retângulo 1.jpg"))); // NOI18N
         getContentPane().add(backGround);
@@ -112,13 +166,27 @@ public class AllMovie extends javax.swing.JFrame {
     
     //funcão para mostrar todos os filmes
     public void showInfo() {
-        movieList = this.movieController.listAll("", "", 0);
+        int linha;
+        List<Movie> movieList = this.movieController.listAll("", "", 0);
         
         try {
-            for (Object object : movieList) {
-                String str = object.toString();
-                TextArea.setText(str);
-            }
+//            for (Movie movie : movieList) {
+//                for (linha=0; linha<6; linha++) {
+//                    int id = (int) tabela.getValueAt(linha, 0);
+//                    String nome = (String) tabela.getValueAt(linha, 1);
+//                    String genero = (String) tabela.getValueAt(linha, 2);
+//                    String descricao = (String) tabela.getValueAt(linha, 3);
+//                    int duracao = (int) tabela.getValueAt(linha, 4);
+//                    int faixa = (int) tabela.getValueAt(linha, 5);
+//
+//                    tabela.setValueAt(movie.getId()+id, linha, 0);
+//                    tabela.setValueAt(movie.getName()+nome, linha, 0);
+//                    tabela.setValueAt(movie.getGenre()+genero, linha, 0);
+//                    tabela.setValueAt(movie.getDescription()+descricao, linha, 0);
+//                    tabela.setValueAt(movie.getDuration()+duracao, linha, 0);
+//                    tabela.setValueAt(movie.getAgeRange()+faixa, linha, 0);
+//                }
+//            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -144,6 +212,24 @@ public class AllMovie extends javax.swing.JFrame {
         new MyAccount().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void genreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_genreActionPerformed
+
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        
+        
+//        try {
+//            int linha = tabela.getSelectedRow();
+//            int coluna = tabela.getSelectedColumn();
+//            String valor = String.valueOf(tabela.getValueAt(linha, coluna));
+//            
+//            //new Watch().setVisible(true);
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+    }//GEN-LAST:event_tabelaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -182,13 +268,16 @@ public class AllMovie extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Logo;
-    private javax.swing.JTextArea TextArea;
     private javax.swing.JLabel backGround;
     private javax.swing.JTextField campoText;
+    private javax.swing.JComboBox<String> genre;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton search;
+    private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }
