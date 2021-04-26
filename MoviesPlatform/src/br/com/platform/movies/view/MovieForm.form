@@ -174,7 +174,7 @@
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="11">
+              <StringArray count="12">
                 <StringItem index="0" value="A&#xe7;&#xe3;o"/>
                 <StringItem index="1" value="Romance"/>
                 <StringItem index="2" value="Com&#xe9;dia"/>
@@ -185,7 +185,8 @@
                 <StringItem index="7" value="Biogr&#xe1;fico"/>
                 <StringItem index="8" value="Hist&#xf3;rico"/>
                 <StringItem index="9" value="Fantasia"/>
-                <StringItem index="10" value="Musical"/>
+                <StringItem index="10" value="Infantil"/>
+                <StringItem index="11" value="Musical"/>
               </StringArray>
             </Property>
           </Properties>
