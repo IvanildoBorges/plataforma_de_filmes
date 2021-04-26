@@ -1,7 +1,9 @@
 package br.com.platform.movies.view;
 
 import br.com.platform.movies.controller.MovieController;
+import br.com.platform.movies.controller.PersonController;
 import br.com.platform.movies.model.Movie;
+import br.com.platform.movies.session.Session;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -14,14 +16,27 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AllMovie extends javax.swing.JFrame {
     private MovieController movieController;
+    private PersonController personController;
 
     /**
      * Creates new form AllMovie
      */
     public AllMovie() {  
         this.movieController = new MovieController();
+        this.personController = new PersonController();
         initComponents();
         showInfo();
+        this.checkUserPermission();
+    }
+    
+    private void checkUserPermission() {
+      try {
+        int userId = Session.userId;
+        boolean isAdmin = this.personController.checkIsAdmin(userId);
+        this.btnAddMovie.setVisible(isAdmin);
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+      }
     }
 
     /**
@@ -139,10 +154,6 @@ public class AllMovie extends javax.swing.JFrame {
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -333,7 +344,6 @@ public class AllMovie extends javax.swing.JFrame {
     }//GEN-LAST:event_caixaCombinActionPerformed
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
-        
         try {
             if (evt.getClickCount() == 2) {
                 int linha = tabela.getSelectedRow();
