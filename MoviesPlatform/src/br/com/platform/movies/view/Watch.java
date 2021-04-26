@@ -1,7 +1,10 @@
 package br.com.platform.movies.view;
 
 import br.com.platform.movies.controller.MovieController;
+import br.com.platform.movies.controller.MoviePersonController;
 import br.com.platform.movies.model.Movie;
+import br.com.platform.movies.session.Session;
+import br.com.platform.movies.session.SessionMovie;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,30 +14,30 @@ import javax.swing.JOptionPane;
  */
 public class Watch extends javax.swing.JFrame {
     private MovieController movieController = new MovieController();
-    private int id;
-
+    private int idPerson = Session.userId;
+    private int idMovie = SessionMovie.movieId;
+    private MoviePersonController moviepersonController = new MoviePersonController();
     /**
      * Creates new form Watch
      */
     public Watch() {
         initComponents();
-        this.getMovie();
+        this.showInfo();
     }
     
-    public void setId(int id) {
-        this.id = id;
-        System.out.println("\n" + "ID recebido:" +id);
-    }
-    
-    private void getMovie() {
-      System.out.println("chamou a função que pega o filme");
-      try {
-        Movie movie = this.movieController.findById(this.id);
-        System.out.println(movie.getName());
-      } catch (Exception e) {
-        System.out.println("Erro ao buscar informações do filme");
-      }
-      
+    private void showInfo() {
+        int linha = 0;
+        
+        try {
+            Movie movie = this.movieController.findById(this.idMovie);
+            tabela.setValueAt(movie.getId(), linha, 0);
+            tabela.setValueAt(movie.getName(), linha, 1);
+            tabela.setValueAt(movie.getGenre(), linha, 2);
+            tabela.setValueAt(movie.getAgeRange(), linha, 3);
+            tabela.setValueAt(movie.getDuration(), linha, 4); 
+        } catch (Exception e) {
+            System.out.println("Erro ao buscar informações do filme");
+        }
     }
 
     /**
@@ -49,7 +52,7 @@ public class Watch extends javax.swing.JFrame {
         Logo = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         tableInfo = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         qtdMin = new javax.swing.JSpinner();
         watch = new javax.swing.JButton();
@@ -79,37 +82,44 @@ public class Watch extends javax.swing.JFrame {
 
         tableInfo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setAutoCreateRowSorter(true);
+        tabela.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null, null, null}
             },
             new String [] {
-                "Filme", "Gênero", "Classificação", "Duração"
+                "Id", "Filme", "Gênero", "Classificação", "Duração"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tableInfo.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(200);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(250);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(300);
-            jTable1.getColumnModel().getColumn(1).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(150);
-            jTable1.getColumnModel().getColumn(2).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(150);
-            jTable1.getColumnModel().getColumn(2).setMaxWidth(150);
-            jTable1.getColumnModel().getColumn(3).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(1540);
-            jTable1.getColumnModel().getColumn(3).setMaxWidth(150);
+        tabela.getTableHeader().setReorderingAllowed(false);
+        tableInfo.setViewportView(tabela);
+        if (tabela.getColumnModel().getColumnCount() > 0) {
+            tabela.getColumnModel().getColumn(0).setResizable(false);
+            tabela.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tabela.getColumnModel().getColumn(1).setMinWidth(200);
+            tabela.getColumnModel().getColumn(1).setPreferredWidth(250);
+            tabela.getColumnModel().getColumn(1).setMaxWidth(300);
+            tabela.getColumnModel().getColumn(2).setPreferredWidth(400);
+            tabela.getColumnModel().getColumn(3).setResizable(false);
+            tabela.getColumnModel().getColumn(3).setPreferredWidth(150);
+            tabela.getColumnModel().getColumn(4).setResizable(false);
+            tabela.getColumnModel().getColumn(4).setPreferredWidth(200);
         }
 
         getContentPane().add(tableInfo);
@@ -143,17 +153,15 @@ public class Watch extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void watchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_watchActionPerformed
-        int n = (int) qtdMin.getValue();
-        
-//        try {
-//            
-//            
-//            JOptionPane.showMessageDialog(null, "Progresso salvo!");
-//            new MyAccount().setVisible(true);
-//            this.setVisible(false);
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e.getMessage());
-//        }
+        try {
+            int n = (int) qtdMin.getValue();
+            moviepersonController.setWatchedMovie(idPerson, idMovie, n);
+            
+            new MyAccount().setVisible(true);
+            this.setVisible(false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_watchActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -201,8 +209,8 @@ public class Watch extends javax.swing.JFrame {
     private javax.swing.JLabel backGround;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JSpinner qtdMin;
+    private javax.swing.JTable tabela;
     private javax.swing.JScrollPane tableInfo;
     private javax.swing.JButton watch;
     // End of variables declaration//GEN-END:variables

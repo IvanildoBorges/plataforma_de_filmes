@@ -1,12 +1,21 @@
 package br.com.platform.movies.view;
 
+import br.com.platform.movies.controller.PersonController;
+import br.com.platform.movies.model.Person;
+import br.com.platform.movies.session.Session;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Elieudo Maia
  * @author Ivanildo Borges
  */
 public class Perfil extends javax.swing.JFrame {
-
+    private PersonController personController = new PersonController();
+    private int idPerson = Session.userId;
+    
     /**
      * Creates new form Perfil
      */
@@ -15,10 +24,32 @@ public class Perfil extends javax.swing.JFrame {
         showInfo();
     }
 
+    public String convertToString(Date aniversario) {
+        Date niver = aniversario;
+        String dataFormatada = null;
+        
+        try {
+            SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+            dataFormatada = formatador.format(niver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dataFormatada;
+    }
+    
     //pegar o ID da pessoa na Classe
     public void showInfo() {
-        
-        
+        try {
+            Person usuario = this.personController.getById(idPerson);
+            campo1.setText(usuario.getName());
+            campo2.setText(usuario.getAddress());
+            campo3.setText(usuario.getEmail());
+            campo4.setText(usuario.getPassword());
+            campo5.setText(usuario.getTelephone());
+            campo6.setText(convertToString(usuario.getBirthDate()));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao mostrar seus dados!");
+        }
     }
     
     /**
@@ -33,8 +64,18 @@ public class Perfil extends javax.swing.JFrame {
         Logo = new javax.swing.JLabel();
         back = new javax.swing.JButton();
         titulo = new javax.swing.JLabel();
-        areaText = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textName = new javax.swing.JLabel();
+        campo1 = new javax.swing.JTextField();
+        textAddress = new javax.swing.JLabel();
+        campo2 = new javax.swing.JTextField();
+        textPassword = new javax.swing.JLabel();
+        campo4 = new javax.swing.JPasswordField();
+        textEmail = new javax.swing.JLabel();
+        campo3 = new javax.swing.JTextField();
+        textTel = new javax.swing.JLabel();
+        campo5 = new javax.swing.JTextField();
+        textBirthDay = new javax.swing.JLabel();
+        campo6 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         exit = new javax.swing.JButton();
         backGround = new javax.swing.JLabel();
@@ -67,20 +108,87 @@ public class Perfil extends javax.swing.JFrame {
         getContentPane().add(titulo);
         titulo.setBounds(400, 130, 150, 30);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        areaText.setViewportView(jTextArea1);
+        textName.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        textName.setForeground(new java.awt.Color(255, 255, 255));
+        textName.setText("Nome:");
+        getContentPane().add(textName);
+        textName.setBounds(130, 200, 60, 22);
 
-        getContentPane().add(areaText);
-        areaText.setBounds(190, 200, 560, 240);
+        campo1.setEditable(false);
+        campo1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        getContentPane().add(campo1);
+        campo1.setBounds(130, 220, 620, 26);
+
+        textAddress.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        textAddress.setForeground(new java.awt.Color(255, 255, 255));
+        textAddress.setText("Endereço:");
+        getContentPane().add(textAddress);
+        textAddress.setBounds(130, 250, 75, 22);
+
+        campo2.setEditable(false);
+        campo2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        getContentPane().add(campo2);
+        campo2.setBounds(130, 270, 620, 26);
+
+        textPassword.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        textPassword.setForeground(new java.awt.Color(255, 255, 255));
+        textPassword.setText("Senha:");
+        getContentPane().add(textPassword);
+        textPassword.setBounds(130, 350, 51, 22);
+
+        campo4.setEditable(false);
+        campo4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        getContentPane().add(campo4);
+        campo4.setBounds(130, 370, 250, 26);
+
+        textEmail.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        textEmail.setForeground(new java.awt.Color(255, 255, 255));
+        textEmail.setText("Email:");
+        getContentPane().add(textEmail);
+        textEmail.setBounds(130, 300, 47, 22);
+
+        campo3.setEditable(false);
+        campo3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        getContentPane().add(campo3);
+        campo3.setBounds(130, 320, 310, 26);
+
+        textTel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        textTel.setForeground(new java.awt.Color(255, 255, 255));
+        textTel.setText("Telefone:");
+        getContentPane().add(textTel);
+        textTel.setBounds(560, 300, 71, 22);
+
+        campo5.setEditable(false);
+        campo5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        campo5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campo5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(campo5);
+        campo5.setBounds(560, 320, 190, 26);
+
+        textBirthDay.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        textBirthDay.setForeground(new java.awt.Color(255, 255, 255));
+        textBirthDay.setText("Data de Aniversário:");
+        getContentPane().add(textBirthDay);
+        textBirthDay.setBounds(560, 350, 160, 22);
+
+        campo6.setEditable(false);
+        campo6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        campo6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campo6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(campo6);
+        campo6.setBounds(560, 370, 190, 26);
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(137, 61, 140));
         jButton1.setText("Solicitar Alteração");
         getContentPane().add(jButton1);
-        jButton1.setBounds(370, 460, 200, 33);
+        jButton1.setBounds(370, 470, 200, 33);
 
         exit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         exit.setForeground(new java.awt.Color(137, 61, 140));
@@ -91,7 +199,7 @@ public class Perfil extends javax.swing.JFrame {
             }
         });
         getContentPane().add(exit);
-        exit.setBounds(430, 510, 70, 33);
+        exit.setBounds(430, 520, 70, 33);
 
         backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/Retângulo 1.jpg"))); // NOI18N
         getContentPane().add(backGround);
@@ -107,10 +215,17 @@ public class Perfil extends javax.swing.JFrame {
     }//GEN-LAST:event_backActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
-        
         new Home().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_exitActionPerformed
+
+    private void campo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campo5ActionPerformed
+
+    private void campo6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campo6ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -149,12 +264,22 @@ public class Perfil extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Logo;
-    private javax.swing.JScrollPane areaText;
     private javax.swing.JButton back;
     private javax.swing.JLabel backGround;
+    private javax.swing.JTextField campo1;
+    private javax.swing.JTextField campo2;
+    private javax.swing.JTextField campo3;
+    private javax.swing.JPasswordField campo4;
+    private javax.swing.JTextField campo5;
+    private javax.swing.JTextField campo6;
     private javax.swing.JButton exit;
     private javax.swing.JButton jButton1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel textAddress;
+    private javax.swing.JLabel textBirthDay;
+    private javax.swing.JLabel textEmail;
+    private javax.swing.JLabel textName;
+    private javax.swing.JLabel textPassword;
+    private javax.swing.JLabel textTel;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

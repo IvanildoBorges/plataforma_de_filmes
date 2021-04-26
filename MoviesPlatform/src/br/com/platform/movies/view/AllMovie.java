@@ -4,7 +4,7 @@ import br.com.platform.movies.controller.MovieController;
 import br.com.platform.movies.controller.PersonController;
 import br.com.platform.movies.model.Movie;
 import br.com.platform.movies.session.Session;
-import java.util.Iterator;
+import br.com.platform.movies.session.SessionMovie;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -25,7 +25,7 @@ public class AllMovie extends javax.swing.JFrame {
         this.movieController = new MovieController();
         this.personController = new PersonController();
         initComponents();
-        showInfo();
+        this.showInfo();
         this.checkUserPermission();
     }
     
@@ -351,17 +351,13 @@ public class AllMovie extends javax.swing.JFrame {
             if (evt.getClickCount() == 2) {
                 int linha = tabela.getSelectedRow();
                 int colunaAux = 0;
-                int identificador;
+                int identificador = (int) tabela.getValueAt(linha, colunaAux);;
 
-//                System.out.println("LINHA: " + linha);
-//                System.out.println("COLUNA: " + colunaAux);
-
-                identificador = (int) tabela.getValueAt(linha, colunaAux);
                 System.out.println("ID do Filme " + identificador);
+                
+                SessionMovie.movieId = identificador;
 
-                Watch assistir = new Watch();
-                assistir.setId(identificador);
-                assistir.setVisible(true);
+                new Watch().setVisible(true);
                 this.setVisible(false);
             }
         } catch (Exception e) {
