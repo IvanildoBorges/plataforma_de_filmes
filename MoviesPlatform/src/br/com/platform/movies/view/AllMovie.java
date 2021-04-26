@@ -80,7 +80,7 @@ public class AllMovie extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Filtros:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(110, 500, 70, 20);
+        jLabel2.setBounds(110, 510, 70, 20);
 
         caixaCombin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         caixaCombin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome do filme", "Gênero", "Faixa Etária" }));
@@ -90,12 +90,12 @@ public class AllMovie extends javax.swing.JFrame {
             }
         });
         getContentPane().add(caixaCombin);
-        caixaCombin.setBounds(170, 500, 120, 26);
+        caixaCombin.setBounds(170, 510, 120, 26);
 
         campoText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         campoText.setForeground(new java.awt.Color(51, 51, 51));
         getContentPane().add(campoText);
-        campoText.setBounds(110, 470, 550, 26);
+        campoText.setBounds(110, 480, 550, 26);
 
         search.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         search.setForeground(new java.awt.Color(137, 61, 140));
@@ -106,13 +106,13 @@ public class AllMovie extends javax.swing.JFrame {
             }
         });
         getContentPane().add(search);
-        search.setBounds(670, 470, 160, 30);
+        search.setBounds(670, 480, 160, 30);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Clique na linha do filme que deseja assistir");
+        jLabel4.setText("Dê um duplo clique no filme que deseja assistir");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(110, 170, 340, 30);
+        jLabel4.setBounds(110, 180, 390, 30);
 
         tabela.setAutoCreateRowSorter(true);
         tabela.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -133,9 +133,16 @@ public class AllMovie extends javax.swing.JFrame {
                 "Id", "Nome", "Gênero", "Descrição", "Duração", "Faixa Etária", "Dísponibilidade"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -163,13 +170,13 @@ public class AllMovie extends javax.swing.JFrame {
         }
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(110, 200, 720, 230);
+        jScrollPane2.setBounds(110, 210, 720, 230);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Deseja filtrar um filme, gênero ou faixa etária :");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(110, 440, 390, 30);
+        jLabel3.setBounds(110, 450, 390, 30);
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(137, 61, 140));
@@ -180,7 +187,7 @@ public class AllMovie extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(20, 30, 90, 29);
+        jButton2.setBounds(20, 30, 90, 30);
 
         backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/Retângulo 1.jpg"))); // NOI18N
         getContentPane().add(backGround);
@@ -205,7 +212,7 @@ public class AllMovie extends javax.swing.JFrame {
              
                 //Salva uma mensagem para disponibilidade do filme    
                 if (movieList.get(linha).isIsAvaiable()) {
-                    valor = "Diponível";
+                    valor = "Disponível";
                 } else {
                     valor = "Indiponível";
                 }
@@ -249,7 +256,7 @@ public class AllMovie extends javax.swing.JFrame {
                 
                 while (linha < nameMovie.size()) {
                     if (nameMovie.get(linha).isIsAvaiable()) {
-                        valor = "Diponível";
+                        valor = "Disponível";
                     } else {
                         valor = "Indiponível";
                     }
@@ -270,7 +277,7 @@ public class AllMovie extends javax.swing.JFrame {
                 
                 while (linha < genreMovie.size()) {
                     if (genreMovie.get(linha).isIsAvaiable()) {
-                        valor = "Diponível";
+                        valor = "Disponível";
                     } else {
                         valor = "Indiponível";
                     }
@@ -292,9 +299,9 @@ public class AllMovie extends javax.swing.JFrame {
                 
                 while (linha < faixaEtMovie.size()) {
                     if (faixaEtMovie.get(linha).isIsAvaiable()) {
-                        valor = "Diponível";
+                        valor = "Disponível";
                     } else {
-                        valor = "Indiponível";
+                        valor = "Indisponível";
                     }
 
                     modelo.addRow(new Object[]{
@@ -326,23 +333,24 @@ public class AllMovie extends javax.swing.JFrame {
     }//GEN-LAST:event_caixaCombinActionPerformed
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
-
+        
         try {
-            int linha = tabela.getSelectedRow();
-//            int coluna = tabela.getSelectedColumn();
-            int colunaAux = 0;
-            int identificador;
-            
-            System.out.println("LINHA: " + linha);
-            System.out.println("COLUNA: " + colunaAux);
-            
-            identificador = (int) tabela.getValueAt(linha, colunaAux);
-            System.out.println("ID do Filme " + identificador);
-            
-            Watch assistir = new Watch();
-            assistir.setId(identificador);
-            assistir.setVisible(true);
-            this.setVisible(false);
+            if (evt.getClickCount() == 2) {
+                int linha = tabela.getSelectedRow();
+                int colunaAux = 0;
+                int identificador;
+
+                System.out.println("LINHA: " + linha);
+                System.out.println("COLUNA: " + colunaAux);
+
+                identificador = (int) tabela.getValueAt(linha, colunaAux);
+                System.out.println("ID do Filme " + identificador);
+
+                Watch assistir = new Watch();
+                assistir.setId(identificador);
+                assistir.setVisible(true);
+                this.setVisible(false);
+            }
         } catch (Exception e) {
            e.printStackTrace();
         }

@@ -123,7 +123,6 @@ public class MyAccount extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabela);
         if (tabela.getColumnModel().getColumnCount() > 0) {
             tabela.getColumnModel().getColumn(0).setPreferredWidth(200);
-            tabela.getColumnModel().getColumn(1).setResizable(false);
             tabela.getColumnModel().getColumn(1).setPreferredWidth(130);
             tabela.getColumnModel().getColumn(2).setPreferredWidth(250);
             tabela.getColumnModel().getColumn(3).setResizable(false);
@@ -200,9 +199,9 @@ public class MyAccount extends javax.swing.JFrame {
             while (linha < movielist.size()) {
                 
                 if (movielist.get(linha).isIsAvaiable()) {
-                    valor = "Diponível";
+                    valor = "Disponível";
                 } else {
-                    valor = "Indiponível";
+                    valor = "Indisponível";
                 }
                 
                 modelo.addRow(new Object[]{

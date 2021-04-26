@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.platform.movies.view;
 
 import br.com.platform.movies.controller.MovieController;
@@ -10,7 +5,8 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author elieu
+ * @author Elieudo Maia
+ * @author Ivanildo Borges
  */
 public class MovieForm extends javax.swing.JFrame {
   private MovieController movieController;

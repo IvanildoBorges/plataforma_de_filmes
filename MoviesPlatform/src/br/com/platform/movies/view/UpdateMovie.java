@@ -1,17 +1,28 @@
 package br.com.platform.movies.view;
 
+import br.com.platform.movies.controller.MovieController;
+import br.com.platform.movies.model.Movie;
+import java.time.Duration;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Elieudo Maia
  * @author Ivanildo Borges
  */
 public class UpdateMovie extends javax.swing.JFrame {
-
+    private MovieController movieController;
+    private int id;
+    
   /**
    * Creates new form UpdateMovie
    */
   public UpdateMovie() {
-    initComponents();
+        this.movieController = new MovieController();
+        initComponents();
+        showInfo();
   }
 
   /**
@@ -27,14 +38,14 @@ public class UpdateMovie extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        tabela = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane = new javax.swing.JScrollPane();
+        tabela = new javax.swing.JTable();
         jLabel0 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         campo1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        campo2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         campo3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         campo4 = new javax.swing.JTextField();
@@ -67,16 +78,16 @@ public class UpdateMovie extends javax.swing.JFrame {
         getContentPane().add(jButton4);
         jButton4.setBounds(760, 30, 160, 30);
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(137, 61, 140));
-        jButton3.setText("Cancelar");
+        jButton3.setText("VOLTAR");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(350, 520, 99, 40);
+        jButton3.setBounds(20, 30, 90, 30);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -84,22 +95,64 @@ public class UpdateMovie extends javax.swing.JFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(80, 110, 340, 30);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setAutoCreateRowSorter(true);
+        tabela.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Nome", "Gênero", "Descrição", "Duração", "Faixa Etária", "Disponibilidade"
             }
-        ));
-        jTable1.setRowHeight(20);
-        tabela.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
 
-        getContentPane().add(tabela);
-        tabela.setBounds(80, 140, 780, 160);
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabela.setRowHeight(20);
+        tabela.getTableHeader().setReorderingAllowed(false);
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
+        jScrollPane.setViewportView(tabela);
+        if (tabela.getColumnModel().getColumnCount() > 0) {
+            tabela.getColumnModel().getColumn(0).setResizable(false);
+            tabela.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tabela.getColumnModel().getColumn(1).setPreferredWidth(250);
+            tabela.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tabela.getColumnModel().getColumn(3).setPreferredWidth(250);
+            tabela.getColumnModel().getColumn(4).setResizable(false);
+            tabela.getColumnModel().getColumn(4).setPreferredWidth(100);
+            tabela.getColumnModel().getColumn(5).setResizable(false);
+            tabela.getColumnModel().getColumn(5).setPreferredWidth(100);
+            tabela.getColumnModel().getColumn(6).setResizable(false);
+            tabela.getColumnModel().getColumn(6).setPreferredWidth(130);
+        }
+
+        getContentPane().add(jScrollPane);
+        jScrollPane.setBounds(80, 140, 780, 160);
 
         jLabel0.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel0.setForeground(new java.awt.Color(255, 255, 255));
@@ -123,19 +176,19 @@ public class UpdateMovie extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(90, 400, 90, 20);
 
+        campo2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        getContentPane().add(campo2);
+        campo2.setBounds(90, 480, 160, 30);
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Faixa Etária:");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(650, 340, 100, 30);
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(90, 420, 430, 30);
-
         campo3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         getContentPane().add(campo3);
-        campo3.setBounds(90, 480, 160, 30);
+        campo3.setBounds(90, 420, 430, 30);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -169,14 +222,14 @@ public class UpdateMovie extends javax.swing.JFrame {
 
         register.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         register.setForeground(new java.awt.Color(137, 61, 140));
-        register.setText("Alterar");
+        register.setText("ATUALIZAR");
         register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registerActionPerformed(evt);
             }
         });
         getContentPane().add(register);
-        register.setBounds(470, 520, 100, 40);
+        register.setBounds(420, 500, 120, 40);
 
         backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/platform/movies/midia/Retângulo 1.jpg"))); // NOI18N
         getContentPane().add(backGround);
@@ -186,6 +239,44 @@ public class UpdateMovie extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void showInfo() {
+        int linha = 0;
+        List<Movie> movieList = this.movieController.listAll("", "", 0);
+        DefaultTableModel modelo;
+        String valor = "";
+        
+        try {
+            modelo = (DefaultTableModel) tabela.getModel();
+            modelo.setNumRows(0);
+            
+            while (linha < movieList.size()) {
+             
+                //Salva uma mensagem para disponibilidade do filme    
+                if (movieList.get(linha).isIsAvaiable()) {
+                    valor = "Disponível";
+                } else {
+                    valor = "Indisponível";
+                }
+                
+                //Cria um objeto e adiciona numa linha da tabela
+                //Cada linha é composta de colunas com os seguintes valores da
+                //lista de filmes (movieList):
+                modelo.addRow(new Object[]{
+                    movieList.get(linha).getId(),
+                    movieList.get(linha).getName(),
+                    movieList.get(linha).getGenre(),
+                    movieList.get(linha).getDescription(),
+                    movieList.get(linha).getDuration(),
+                    movieList.get(linha).getAgeRange(),
+                    valor,
+                    linha++
+                });
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new AllMovie().setVisible(true);
         this.setVisible(false);
@@ -197,25 +288,79 @@ public class UpdateMovie extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
-//        String name = this.name.getText();
-//        String genre = (String) this.genre.getSelectedItem();
-//        int ageRange = (int) this.ageRange.getValue();
-//        int duration = (int) this.duration.getValue();
-//        String description= this.description.getText();
-//        boolean isAvailable = this.isAvailable.isSelected();
-//
-//        try {
-//            this.movieController.createMovie(name, genre, description, duration, isAvailable, ageRange);
-//
-//            JOptionPane.showMessageDialog(null, "Filme cadastrado com sucesso");
-//
-//            new UpdateMovie().setVisible(true);
-//            this.setVisible(false);
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e.getMessage());
-//        }
+
+        try {
+            String nome = campo1.getText();
+            String genero = campo2.getText();
+            String descricao = campo3.getText();
+            int duracao =  Integer.parseInt(campo4.getText());
+            int faixaEtaria = Integer.parseInt(campo5.getText());
+            boolean disponivel = Boolean.parseBoolean(campo6.getText());
+            
+            System.out.println("Valor id: " + id);
+            System.out.println("Valor nome: " + nome);
+            System.out.println("Valor genero: " + genero);
+            System.out.println("Valor descrição: " + descricao);
+            System.out.println("Valor duração: " + duracao);
+            System.out.println("Valor disponibilidade: " + disponivel);
+            System.out.println("Valor faixa etária: " + faixaEtaria);
+            
+            this.movieController.updateMovie(id, nome, genero, descricao, duracao, disponivel, faixaEtaria);
+            JOptionPane.showMessageDialog(null, "Filme atualizado com sucesso!");
+            showInfo();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_registerActionPerformed
 
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        try {
+            int linha = tabela.getSelectedRow();
+            int coluna = 1;
+            int colunaAux = 0;
+            String nome;
+            String genero;
+            String descricao;
+            int duracao;
+            int faixaEtaria;
+            String disponivel;
+            int identificador;
+
+            System.out.println("LINHA: " + linha);
+            System.out.println("COLUNA: " + coluna);
+
+            identificador = (int) tabela.getValueAt(linha, colunaAux);
+            System.out.println("ID do Filme " + identificador);
+            
+            nome = (String) tabela.getValueAt(linha, 1);
+            genero = (String) tabela.getValueAt(linha, 2);
+            descricao = (String) tabela.getValueAt(linha, 3);
+            duracao =  (int) tabela.getValueAt(linha, 4);
+            faixaEtaria = (int) tabela.getValueAt(linha, 5);
+            disponivel = (String) tabela.getValueAt(linha, 6);
+            
+            boolean disponibilidade;
+            
+            if (disponivel.equals("Disponível")) {
+                disponibilidade = true;
+            } else {
+                disponibilidade = false;
+            }
+            
+            campo1.setText(nome);
+            campo2.setText(genero);
+            campo3.setText(descricao);
+            campo4.setText(Integer.toString(duracao));
+            campo5.setText(Integer.toString(faixaEtaria));
+            campo6.setText(Boolean.toString(disponibilidade));
+
+            this.id = identificador;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_tabelaMouseClicked
+   
   /**
    * @param args the command line arguments
    */
@@ -255,6 +400,7 @@ public class UpdateMovie extends javax.swing.JFrame {
     private javax.swing.JLabel Logo;
     private javax.swing.JLabel backGround;
     private javax.swing.JTextField campo1;
+    private javax.swing.JTextField campo2;
     private javax.swing.JTextField campo3;
     private javax.swing.JTextField campo4;
     private javax.swing.JTextField campo5;
@@ -269,9 +415,8 @@ public class UpdateMovie extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JButton register;
-    private javax.swing.JScrollPane tabela;
+    private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }
