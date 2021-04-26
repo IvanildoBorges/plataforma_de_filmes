@@ -266,7 +266,7 @@ public class UserList extends javax.swing.JFrame {
                     personList.get(linha).getTelephone(),
                     personList.get(linha).getAddress(),
                     personList.get(linha).getBirthDate(),
-                    this.checkAdm = ,
+                    //this.checkAdm = ,//validacao para saber se é adm ou não
                     linha++
                 });
             }

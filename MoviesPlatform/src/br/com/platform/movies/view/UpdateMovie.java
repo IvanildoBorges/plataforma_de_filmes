@@ -2,7 +2,6 @@ package br.com.platform.movies.view;
 
 import br.com.platform.movies.controller.MovieController;
 import br.com.platform.movies.model.Movie;
-import java.time.Duration;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

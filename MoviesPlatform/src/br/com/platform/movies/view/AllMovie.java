@@ -49,7 +49,7 @@ public class AllMovie extends javax.swing.JFrame {
     private void initComponents() {
 
         Logo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnAddMovie = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         caixaCombin = new javax.swing.JComboBox<>();
@@ -74,16 +74,16 @@ public class AllMovie extends javax.swing.JFrame {
         getContentPane().add(Logo);
         Logo.setBounds(170, 20, 580, 60);
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(137, 61, 140));
-        jButton1.setText("ADICIONAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAddMovie.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAddMovie.setForeground(new java.awt.Color(137, 61, 140));
+        btnAddMovie.setText("ADICIONAR");
+        btnAddMovie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAddMovieActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(790, 30, 110, 29);
+        getContentPane().add(btnAddMovie);
+        btnAddMovie.setBounds(790, 30, 110, 29);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(130, 19, 138));
@@ -155,6 +155,10 @@ public class AllMovie extends javax.swing.JFrame {
                 false, false, false, false, false, false, false
             };
 
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
@@ -167,7 +171,6 @@ public class AllMovie extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabela);
         if (tabela.getColumnModel().getColumnCount() > 0) {
-            tabela.getColumnModel().getColumn(0).setResizable(false);
             tabela.getColumnModel().getColumn(0).setPreferredWidth(80);
             tabela.getColumnModel().getColumn(1).setPreferredWidth(250);
             tabela.getColumnModel().getColumn(2).setPreferredWidth(150);
@@ -334,10 +337,10 @@ public class AllMovie extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_searchActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAddMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMovieActionPerformed
         new UpdateMovie().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAddMovieActionPerformed
 
     private void caixaCombinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caixaCombinActionPerformed
         // TODO add your handling code here:
@@ -409,9 +412,9 @@ public class AllMovie extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Logo;
     private javax.swing.JLabel backGround;
+    private javax.swing.JButton btnAddMovie;
     private javax.swing.JComboBox<String> caixaCombin;
     private javax.swing.JTextField campoText;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

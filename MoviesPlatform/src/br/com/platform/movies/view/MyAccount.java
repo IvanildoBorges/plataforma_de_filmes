@@ -212,7 +212,6 @@ public class MyAccount extends javax.swing.JFrame {
         
         try {      
             while (linha < movielist.size()) {
-                
                 if (movielist.get(linha).isIsAvaiable()) {
                     valor = "Disponível";
                 } else {

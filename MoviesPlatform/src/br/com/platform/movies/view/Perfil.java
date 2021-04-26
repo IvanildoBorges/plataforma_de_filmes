@@ -107,7 +107,8 @@ public class Perfil extends javax.swing.JFrame {
     }//GEN-LAST:event_backActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
-        //
+        new Login().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_exitActionPerformed
     
     /**
