@@ -353,8 +353,8 @@ public class AllMovie extends javax.swing.JFrame {
                 int colunaAux = 0;
                 int identificador;
 
-                System.out.println("LINHA: " + linha);
-                System.out.println("COLUNA: " + colunaAux);
+//                System.out.println("LINHA: " + linha);
+//                System.out.println("COLUNA: " + colunaAux);
 
                 identificador = (int) tabela.getValueAt(linha, colunaAux);
                 System.out.println("ID do Filme " + identificador);

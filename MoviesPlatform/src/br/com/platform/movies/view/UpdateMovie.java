@@ -337,7 +337,6 @@ public class UpdateMovie extends javax.swing.JFrame {
             duracao =  (int) tabela.getValueAt(linha, 4);
             faixaEtaria = (int) tabela.getValueAt(linha, 5);
             disponivel = (String) tabela.getValueAt(linha, 6);
-            
             boolean disponibilidade;
             
             if (disponivel.equals("Disponível")) {
