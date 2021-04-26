@@ -47,6 +47,7 @@ public class Watch extends javax.swing.JFrame {
     private void initComponents() {
 
         Logo = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         tableInfo = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -65,19 +66,30 @@ public class Watch extends javax.swing.JFrame {
         getContentPane().add(Logo);
         Logo.setBounds(170, 20, 580, 60);
 
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(137, 61, 140));
+        jButton2.setText("VOLTAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(20, 30, 90, 29);
+
         tableInfo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jTable1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+                {null, null, null, null}
             },
             new String [] {
-                "Filme", "Gênero", "Classificação", "Duração", "Minutos assistidos"
+                "Filme", "Gênero", "Classificação", "Duração"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -98,9 +110,6 @@ public class Watch extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setMinWidth(100);
             jTable1.getColumnModel().getColumn(3).setPreferredWidth(1540);
             jTable1.getColumnModel().getColumn(3).setMaxWidth(150);
-            jTable1.getColumnModel().getColumn(4).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(150);
-            jTable1.getColumnModel().getColumn(4).setMaxWidth(150);
         }
 
         getContentPane().add(tableInfo);
@@ -147,6 +156,11 @@ public class Watch extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_watchActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new AllMovie().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -185,6 +199,7 @@ public class Watch extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Logo;
     private javax.swing.JLabel backGround;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jTable1;
     private javax.swing.JSpinner qtdMin;

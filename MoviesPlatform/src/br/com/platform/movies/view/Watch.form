@@ -44,6 +44,25 @@
         </Constraint>
       </Constraints>
     </Component>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="8c" green="3d" red="89" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="VOLTAR"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="20" y="30" width="90" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
     <Container class="javax.swing.JScrollPane" name="tableInfo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -67,12 +86,11 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="1">
+              <Table columnCount="4" rowCount="1">
                 <Column editable="false" title="Filme" type="java.lang.Object"/>
                 <Column editable="false" title="G&#xea;nero" type="java.lang.Object"/>
                 <Column editable="false" title="Classifica&#xe7;&#xe3;o" type="java.lang.Object"/>
                 <Column editable="false" title="Dura&#xe7;&#xe3;o" type="java.lang.Object"/>
-                <Column editable="false" title="Minutos assistidos" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -93,11 +111,6 @@
                   <Renderer/>
                 </Column>
                 <Column maxWidth="150" minWidth="100" prefWidth="1540" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="150" minWidth="100" prefWidth="150" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
