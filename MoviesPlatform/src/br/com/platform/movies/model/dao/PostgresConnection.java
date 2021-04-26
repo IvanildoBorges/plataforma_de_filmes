@@ -12,7 +12,7 @@ public class PostgresConnection {
   private static final String DATABASE_DRIVER = "org.postgresql.Driver";
   private static final String DATABASE_CONNECTION_URL = "jdbc:postgresql://localhost:5432/movies-platform";
   private static final String DATABASE_USERNAME = "postgres";
-  private static final String DATABASE_PASSWORD = "maru2018";
+  private static final String DATABASE_PASSWORD = "postgres";
 
   public static Connection openConnection() {
     Connection connection = null;
