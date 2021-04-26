@@ -2,6 +2,7 @@ package br.com.platform.movies.view;
 
 import br.com.platform.movies.controller.MoviePersonController;
 import br.com.platform.movies.model.Movie;
+import br.com.platform.movies.session.Session;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -190,7 +191,7 @@ public class MyAccount extends javax.swing.JFrame {
 
     public void showInfo() {
         int linha = 0;
-        int idPessoa = 2;
+        int idPessoa = Session.userId;
         List<Movie> movielist = this.moviepersoncontroller.getWatchedFilms(idPessoa);
         DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
         modelo.setNumRows(0);

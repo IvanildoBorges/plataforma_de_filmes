@@ -1,6 +1,7 @@
 package br.com.platform.movies.view;
 
 import br.com.platform.movies.controller.PersonController;
+import br.com.platform.movies.session.Session;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -116,8 +117,11 @@ public class Login extends javax.swing.JFrame {
 
         try {
           int personId = this.personController.login(email, new String(pass));
+          
+          Session.userId = personId;
 
           MyAccount minhaConta = new MyAccount();
+          
           minhaConta.setVisible(true);
 
           this.setVisible(false);
