@@ -1,6 +1,7 @@
 package br.com.platform.movies.view;
 
 import br.com.platform.movies.controller.MoviePersonController;
+import br.com.platform.movies.controller.PersonController;
 import br.com.platform.movies.model.Movie;
 import br.com.platform.movies.session.Session;
 import java.util.List;
@@ -15,14 +16,27 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MyAccount extends javax.swing.JFrame {
     private MoviePersonController moviepersoncontroller;
+    private PersonController personController;
 
     /**
      * Creates new form ClientArea
      */
     public MyAccount() {
         this.moviepersoncontroller = new MoviePersonController();
+        this.personController = new PersonController();
         initComponents();
-        showInfo();
+        this.showInfo();
+        this.checkUserPermission();
+    }
+    
+    private void checkUserPermission() {
+      try {
+        int userId = Session.userId;
+        boolean isAdmin = this.personController.checkIsAdmin(userId);
+        this.btnListUsers.setVisible(isAdmin);
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+      }
     }
 
     /**
