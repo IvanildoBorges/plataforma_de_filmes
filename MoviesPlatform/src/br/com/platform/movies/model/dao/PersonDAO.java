@@ -81,6 +81,7 @@ public class PersonDAO extends InsertableOnDatabase{
       person.setId(result.getInt(1));
       person.setName(result.getString(2));
       person.setEmail(result.getString(3));
+      person.setPassword(result.getString(4));
       person.setTelephone(result.getString(5));
       person.setAddress(result.getString(6));
       person.setBirthDate(result.getDate(8));
