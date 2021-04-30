@@ -23,12 +23,25 @@ public class MovieController {
     return movies;
   }
   
-  public void createMovie(String name, String genre, String description, int duration, boolean isAvailable, int ageRange) {
+  public void createMovie(String name, String genre, String description, int duration, boolean isAvailable, int ageRange) throws Exception {
+    if (ageRange < 0) {
+      throw new Exception("A faixa etária deve ser maior que 0");
+    }
+    if (duration < 0) {
+      throw new Exception("A duração deve ser maior que 0");
+    }
     Movie movie = new Movie(name, genre, description, duration, isAvailable, ageRange);
     this.movieDAO.create(movie);
   }
   
   public void updateMovie(int movieId, String name, String genre, String description, int duration, boolean isAvailable, int ageRange) throws Exception {
+    if (ageRange < 0) {
+      throw new Exception("A faixa etária deve ser maior que 0");
+    }
+    if (duration < 0) {
+      throw new Exception("A duração deve ser maior que 0");
+    }
+    
     Movie movie = this.movieDAO.findById(movieId);
 
     movie.setName(name);
